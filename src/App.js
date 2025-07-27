@@ -17,12 +17,12 @@ import PricingPage from './staticpage/PricingPage';
 import ResourcesPage from './staticpage/ResourcesPage'
 import FeaturesPage from './staticpage/FeaturesPage'
 import AboutPage from './staticpage/AboutPage'
-
+import SampleCardPage from './components/SampleCardPage';
 import FirstPage from './components/FirstPage';
 function AppWrapper()
 {
 const location =useLocation();
-  const hideHeaderPaths=['/RegisterPage','/LoginPage'];
+  const hideHeaderPaths=['/RegisterPage','/LoginPage','/SampleCardPage'];
   return(
     <>
         {!hideHeaderPaths.includes(location.pathname)&&<HeaderPage/>}
@@ -34,6 +34,7 @@ const location =useLocation();
         <Route path="/RegisterPage" element={<RegisterPage/>}/>
         <Route path="/DashBoard" element={<Dashboard/>}/>
         <Route path="/AboutPage" element={<AboutPage/>}/>
+        <Route path="/SampleCardPage" element={<SampleCardPage/>}/>
         <Route path="/" element={<LandingPage/>}/>
         <Route path="/CardCreationFreePage" element={<CardCreationFreePage/>}/>
         <Route path="/CardCreationPaidPage" element={<CardCreationPaidPage/>}/>

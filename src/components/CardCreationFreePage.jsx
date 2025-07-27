@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import './cssfile/CardCreationFreePage.css'; // Import the separate CSS file
 
 const CardCreationFreePage = () => {
-  // State to manage form inputs
   const [formData, setFormData] = useState({
     name: '',
     title: '',
@@ -12,11 +10,10 @@ const CardCreationFreePage = () => {
     website: '',
     linkedin: '',
     facebook: '',
-    avatar: '', // To store avatar URL or base64
+    avatar: '',
     about: ''
   });
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevData => ({
@@ -25,192 +22,108 @@ const CardCreationFreePage = () => {
     }));
   };
 
-  // Handle avatar upload (simplified for demonstration)
   const handleAvatarChange = (e) => {
-    // In a real application, you'd handle file uploads to a server
-    // For now, we'll just use a placeholder or a direct URL if provided
     const file = e.target.files[0];
     if (file) {
-      // You might want to display a preview here.
-      // For a simple demo, we can just set a placeholder or a dummy URL.
       setFormData(prevData => ({
         ...prevData,
-        avatar: URL.createObjectURL(file) // Creates a temporary URL for preview
+        avatar: URL.createObjectURL(file)
       }));
     }
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Card Data Submitted:', formData);
-    // In a real app, you would send this data to a backend (e.g., Firestore)
-    alert('Card data submitted! (Check console for data)'); // Using alert for demo, replace with custom modal
+    alert('Card data submitted! (Check console for data)');
   };
 
   return (
-    <div className="card-creation-page-container">
-      <div className="card-creation-form-box">
-        <h1 className="form-title">Create Your Free Digital Card</h1>
-        <p className="form-description">Fill in your details to generate your personalized digital visiting card instantly.</p>
+     <div className="d-flex flex-column min-vh-100 bg-light text-dark">
+       <div style={{ paddingTop: '60rem' }}>
+      <div className="mx-auto p-4 bg-white shadow rounded" style={{ maxWidth: '720px' }}>
+        <h2 className="text-center text-primary mb-3">Create Your Free Digital Card</h2>
+        <p className="text-center text-muted mb-4">
+          Fill in your details to generate your personalized digital visiting card instantly.
+        </p>
 
-        <form onSubmit={handleSubmit} className="card-form">
-          {/* Avatar Section */}
-          <div className="form-group avatar-upload-section">
-            <label htmlFor="avatar-upload" className="avatar-label">
-              {formData.avatar ? (
-                <img
-                  src={formData.avatar}
-                  alt="Avatar Preview"
-                  className="avatar-preview"
-                  onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/100x100/cccccc/333333?text=User"; }}
-                />
-              ) : (
-                <img
-                  src="https://placehold.co/100x100/0d6efd/ffffff?text=Add+Photo"
-                  alt="Placeholder Avatar"
-                  className="avatar-preview placeholder"
-                  onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/100x100/cccccc/333333?text=User"; }}
-                />
-              )}
-              <input
-                type="file"
-                id="avatar-upload"
-                name="avatar"
-                accept="image/*"
-                onChange={handleAvatarChange}
-                className="hidden-input"
+        <form onSubmit={handleSubmit}>
+          {/* Avatar Upload */}
+          <div className="text-center mb-4">
+            <label htmlFor="avatar-upload" className="d-block">
+              <img
+                src={formData.avatar || "https://placehold.co/100x100/0d6efd/ffffff?text=Add+Photo"}
+                alt="Avatar Preview"
+                className="rounded-circle border"
+                style={{ width: '100px', height: '100px', objectFit: 'cover', cursor: 'pointer' }}
               />
-              <span className="upload-text">Click to upload Avatar</span>
             </label>
+            <input
+              type="file"
+              id="avatar-upload"
+              name="avatar"
+              accept="image/*"
+              onChange={handleAvatarChange}
+              className="d-none"
+            />
+            <small className="d-block mt-2 text-secondary">Click to upload Avatar</small>
           </div>
 
           {/* Personal Information */}
-          <div className="form-section">
-            <h3 className="section-title">Personal Information</h3>
-            <div className="form-group">
-              <label htmlFor="name">Full Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="e.g., John Doe"
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="title">Your Title/Profession</label>
-              <input
-                type="text"
-                id="title"
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
-                placeholder="e.g., Founder & CEO, Graphic Designer"
-                required
-              />
-            </div>
+          <h5 className="text-dark mb-3">Personal Information</h5>
+          <div className="mb-3">
+            <label htmlFor="name" className="form-label">Shop Name</label>
+            <input type="text" className="form-control" id="name" name="name" value={formData.name} onChange={handleChange} placeholder="e.g.,  Youth Cloth Shop" required />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="title" className="form-label">Your Title</label>
+            <input type="text" className="form-control" id="title" name="title" value={formData.title} onChange={handleChange} placeholder="e.g., Cloth & Electronic" required />
           </div>
 
           {/* Contact Details */}
-          <div className="form-section">
-            <h3 className="section-title">Contact Details</h3>
-            <div className="form-group">
-              <label htmlFor="phone">Phone Number</label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder="e.g., +91 9876543210"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="email">Email Address</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="e.g., john.doe@example.com"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="address">Address</label>
-              <textarea
-                id="address"
-                name="address"
-                value={formData.address}
-                onChange={handleChange}
-                placeholder="e.g., 123 Business Park, Indore, MP"
-                rows="3"
-              ></textarea>
-            </div>
+          <h5 className="text-dark mt-4 mb-3">Contact Details</h5>
+          <div className="mb-3">
+            <label htmlFor="phone" className="form-label">Phone Number</label>
+            <input type="tel" className="form-control" id="phone" name="phone" value={formData.phone} onChange={handleChange} placeholder="e.g., +91 9876543210" />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">Email Address</label>
+            <input type="email" className="form-control" id="email" name="email" value={formData.email} onChange={handleChange} placeholder="e.g., example@email.com" />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="address" className="form-label">Address</label>
+            <textarea className="form-control" id="address" name="address" rows="3" value={formData.address} onChange={handleChange} placeholder="e.g., 123 Business Street, Indore"></textarea>
           </div>
 
           {/* Social & Web Links */}
-          <div className="form-section">
-            <h3 className="section-title">Social & Web Links</h3>
-            <div className="form-group">
-              <label htmlFor="website">Website URL</label>
-              <input
-                type="url"
-                id="website"
-                name="website"
-                value={formData.website}
-                onChange={handleChange}
-                placeholder="e.g., https://www.example.com"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="linkedin">LinkedIn Profile</label>
-              <input
-                type="url"
-                id="linkedin"
-                name="linkedin"
-                value={formData.linkedin}
-                onChange={handleChange}
-                placeholder="e.g., https://linkedin.com/in/yourprofile"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="facebook">Facebook Profile</label>
-              <input
-                type="url"
-                id="facebook"
-                name="facebook"
-                value={formData.facebook}
-                onChange={handleChange}
-                placeholder="e.g., https://facebook.com/yourprofile"
-              />
-            </div>
+          <h5 className="text-dark mt-4 mb-3">Social & Web Links</h5>
+          <div className="mb-3">
+            <label htmlFor="website" className="form-label">Website URL</label>
+            <input type="url" className="form-control" id="website" name="website" value={formData.website} onChange={handleChange} placeholder="https://yourwebsite.com" />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="linkedin" className="form-label">Instagram Profile</label>
+            <input type="url" className="form-control" id="linkedin" name="linkedin" value={formData.linkedin} onChange={handleChange} placeholder="https://instagram.com/in/yourprofile" />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="facebook" className="form-label">Whatsapp Profile</label>
+            <input type="url" className="form-control" id="facebook" name="facebook" value={formData.facebook} onChange={handleChange} placeholder="https://whatsap.com/yourprofile" />
           </div>
 
           {/* About Section */}
-          <div className="form-section">
-            <h3 className="section-title">About You</h3>
-            <div className="form-group">
-              <label htmlFor="about">Short Bio/Description</label>
-              <textarea
-                id="about"
-                name="about"
-                value={formData.about}
-                onChange={handleChange}
-                placeholder="Tell us a little about yourself or your business..."
-                rows="4"
-              ></textarea>
-            </div>
+          <h5 className="text-dark mt-4 mb-3">About shop</h5>
+          <div className="mb-4">
+            <label htmlFor="about" className="form-label">Short Bio/Description</label>
+            <textarea className="form-control" id="about" name="about" rows="4" value={formData.about} onChange={handleChange} placeholder="Men's Wear | Women's Wear | Kid's Wear"></textarea>
           </div>
 
-          {/* Submit Button */}
-          <button type="submit" className="submit-button">Generate My Card</button>
+          <div className="text-center">
+            <button type="submit" className="btn btn-primary px-4 py-2">Generate My Card</button>
+          </div>
         </form>
       </div>
     </div>
+  </div>
   );
 };
 

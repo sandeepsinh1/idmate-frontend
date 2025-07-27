@@ -1,79 +1,78 @@
 import React from 'react';
-import './cssfile/LandingPage.css';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 const FirstPage = () => {
   return (
-    <div className="landing-page">
-      {/* Header */}
-      <header className="header">
-        <div>   
-      <span className="logo">Idmate</span>
-      <div className="slogan">Say Hello with a Tap.</div>
-        </div>
-  <div className="nav-buttons">
-                      <Link to="/">
-
-            <button className="nav-btn Try-btn">Try Demo</button>
-            </Link>
-
-          <button className="nav-btn features-btn">Features</button>
-          <button className="nav-btn pricing-btn">Pricing</button>
-          <button className="nav-btn about-btn">About Us</button>
-
-        </div>
-      </header>
-
-      {/* Main Content with proper spacing */}
-      <main className="main-content">
+    <div className="d-flex flex-column min-vh-100 bg-light text-dark">
+      {/* Main Content */}
+      <main style={{ paddingTop: '28rem' }}>
         {/* Hero Section */}
-        <section className="hero-section">
-          <h1>Create & Share Your Digital Identity</h1>
-          <p className="hero-description">
-            The universal tool to design and share your ID for business, shop, or yourself - anytime, anywhere.
+        <section className="text-center py-4 px-3 bg-light bg-gradient">
+          <h1 className="text-primary display-5 mb-3">
+            Create & Share Your Digital Identity
+          </h1>
+          <p className="lead text-secondary mb-4 mx-auto" style={{ maxWidth: '700px' }}>
+            The universal tool to design and share your ID for business, shop, or yourself — anytime, anywhere.
           </p>
 
-          <div className="cta-buttons">
-            <Link to="/RegisterPage">
-                        <button className="nav-btn btn-primary">Get Register Yourself</button>
+          <div className="d-flex flex-wrap justify-content-center gap-3 mb-4">
+            <Link to="/CardCreationPaidPage">
+              <button className="btn btn-primary rounded-pill px-4 py-2 fw-semibold">
+                Create Paid Card
+              </button>
             </Link>
-
+            <Link to="/CardCreationFreePage">
+              <button className="btn btn-primary rounded-pill px-4 py-2 fw-semibold">
+                Create Free Card
+              </button>
+            </Link>
           </div>
 
-          <div className="sample-card">
-            <h2>Youth Fashion Center</h2>
-            <p>Men's Wear | Women's Wear | Kids Collection</p>
-            <p>Owner - JD Store</p>
-            <p>📞 +91 9876543210</p>
-            <p>📍 Indore, MP</p>
-            <p>🌐 facebook.com/john</p>
-          </div>
-        </section>
+          {/* 👉 Free vs Paid Card Comparison */}
+         {/* 👉 Free vs Paid Card Comparison - Professional Style */}
+<div className="container mt-5">
+  <h4 className="text-dark fw-bold mb-4">Compare Plans</h4>
+  <div className="row justify-content-center g-4">
+    {/* Free Card */}
+    <div className="col-md-5">
+      <div className="card border-0 shadow-sm h-100">
+        <div className="card-body">
+          <h5 className="text-success fw-bold text-center mb-4">Free Card</h5>
+          <ul className="list-group list-group-flush">
+            <li className="list-group-item">✅ Basic Contact Information</li>
+            <li className="list-group-item">✅ Limited Template Options</li>
+            <li className="list-group-item">✅ Share via Link or QR</li>
+            <li className="list-group-item text-danger">❌ Custom Branding</li>
+            <li className="list-group-item text-danger">❌ Card Analytics</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-        {/* Features Section */}
-        <section className="features-section">
-          <div className="features-container">
-            <div className="feature-card">
-              <h4>🔹 Custom Card</h4>
-              <p>Create cards with your unique brand</p>
-            </div>
-            <div className="feature-card">
-              <h4>🔸 Easy Sharing</h4>
-              <p>Share via link, QR, or WhatsApp</p>
-            </div>
-            <div className="feature-card">
-              <h4>🔒 Secure</h4>
-              <p>Your data is protected with encryption</p>
-            </div>
-            <div className="feature-card">
-              <h4>📱 Mobile Friendly</h4>
-              <p>Works great on all devices</p>
-            </div>
-          </div>
+    {/* Paid Card */}
+    <div className="col-md-5">
+      <div className="card border-0 shadow-sm h-100">
+        <div className="card-body">
+          <h5 className="text-primary fw-bold text-center mb-4">Paid Card</h5>
+          <ul className="list-group list-group-flush">
+            <li className="list-group-item">✅ All Free Features</li>
+            <li className="list-group-item">✅ Premium & Animated Templates</li>
+            <li className="list-group-item">✅ Add Logo & Branding</li>
+            <li className="list-group-item">✅ Advanced Sharing Options</li>
+            <li className="list-group-item">✅ Analytics & View Tracking</li>
+            <li className="list-group-item">✅ Priority Support</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
         </section>
       </main>
 
       {/* Footer */}
-      <footer className="footer">
+      <footer className="text-center py-3 bg-light border-top small">
         &copy; 2025 Digital Card | Privacy Policy | Terms | Contact Us
       </footer>
     </div>

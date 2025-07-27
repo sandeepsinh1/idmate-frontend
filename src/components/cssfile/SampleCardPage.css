@@ -1,0 +1,27 @@
+body {
+  background: #f9f9f9;
+  font-family: 'Inter', sans-serif;
+}
+
+.card-with-bg {
+  height: 100%;
+  color: white;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.card-with-bg:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 0;
+}

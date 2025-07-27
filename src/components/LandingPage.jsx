@@ -3,57 +3,90 @@ import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
   return (
-    <div className="d-flex flex-column min-vh-50 bg-light text-dark">
-      {/* Header */}
-      <header className="bg-white d-flex justify-content-between align-items-center px-4 py-3 shadow sticky-top">
-        <div>
-          <h5 className="mb-0 fw-bold text-warning">Idmate</h5>
-          <small className="text-primary">Say Hello with a Tap.</small>
-        </div>
-        <div className="d-flex flex-wrap gap-2">
-  
-          <Link to="/DashBoard">
-            <button className="btn btn-outline-primary rounded-pill fw-semibold">Dashboard</button>
-          </Link>
-          <Link to="/FeaturesPage">
-            <button className="btn btn-outline-primary rounded-pill fw-semibold">Features</button>
-          </Link>
-          <Link to="/PricingPage">
-            <button className="btn btn-outline-primary rounded-pill fw-semibold">Pricing</button>
-          </Link>
-          <Link to="/AboutPage">
-            <button className="btn btn-primary text-white rounded-pill fw-semibold">About Us</button>
-          </Link>
-        </div>
-      </header>
-
+    
+    <div className="d-flex flex-column min-vh-100 bg-light text-dark">
       {/* Main Content */}
-      <main className="mt-5 pt-5">
-        {/* Hero Section */}
-        <section className="text-center py-5 px-3 bg-light bg-gradient">
-          <h1 className="text-primary display-5 mb-3">Create & Share Your Digital Identity</h1>
+          <main style={{ paddingTop: '28rem' }}>
+  {/* Hero Section */}
+        <section className="text-center py-4 px-3 bg-light bg-gradient">
+          <h1 className="text-primary display-5 mb-3">
+            Create & Share Your Digital Identity
+          </h1>
           <p className="lead text-secondary mb-4 mx-auto" style={{ maxWidth: '700px' }}>
-            The universal tool to design and share your ID for business, shop, or yourself - anytime, anywhere.
+            The universal tool to design and share your ID for business, shop, or yourself — anytime, anywhere.
           </p>
 
           <div className="d-flex flex-wrap justify-content-center gap-3 mb-4">
-            <Link to="/CardCreationPaidPage">
-              <button className="btn btn-primary rounded-pill px-4 py-2 fw-semibold">Create Paid Card</button>
+            <Link to="/RegisterPage">
+              <button className="btn btn-primary rounded-pill px-4 py-2 fw-semibold">
+                Register 
+              </button>
             </Link>
-            <Link to="/CardCreationFreePage">
-              <button className="btn btn-primary rounded-pill px-4 py-2 fw-semibold">Create Free Card</button>
+            <Link to="/SampleCardPage">
+              <button className="btn btn-primary rounded-pill px-4 py-2 fw-semibold">
+              Sample Card
+              </button>
             </Link>
-          </div>
+           </div>
 
-          <div className="card mx-auto shadow p-4" style={{ maxWidth: '400px', backgroundColor: '#a9c1e7', borderRadius: '1rem' }}>
-            <h2 className="h5 text-dark mb-2">Youth Fashion Center</h2>
-            <p className="mb-1 small">Men's Wear | Women's Wear | Kids Collection</p>
-            <p className="mb-1 small">Owner - JD Store</p>
-            <p className="mb-1 small">📞 +91 9876543210</p>
-            <p className="mb-1 small">📍 Indore, MP</p>
-            <p className="mb-0 small">🌐 facebook.com/john</p>
-          </div>
-        </section>
+        <div
+  className="card mx-auto text-center shadow-lg p-4"
+  style={{
+    maxWidth: '800px',
+    backgroundColor: '#f6e8d9',
+    borderRadius: '1.5rem',
+    fontFamily: 'Arial, sans-serif',
+    color: '#2c2c2c',
+  }}
+>
+  {/* Logo */}
+  <div className="mb-3">
+    <img
+      src="https://cdn-icons-png.flaticon.com/512/4290/4290854.png"
+      alt="Logo"
+      style={{ width: '50px', height: '50px' }}
+    />
+    <div className="mt-1 small">Logo</div>
+  </div>
+
+  {/* Name */}
+  <h2 className="fw-bold text-uppercase mb-2" style={{ color: '#1e1e1e' }}>
+    shri dev
+  </h2>
+
+  {/* Tagline */}
+  <p className="mb-2" style={{ fontSize: '0.95rem' }}>
+    Men's Wear | Women's Wear | Kids Collection
+  </p>
+
+  {/* Phone */}
+  <p className="mb-2">
+    📞 <span style={{ fontWeight: '500' }}>07610316422</span>
+  </p>
+
+  {/* Address */}
+  <p className="mb-2">
+    📍 Meena Mansion, 274 Abhinandan Nagar, Shyam Nagar Annex
+  </p>
+
+  {/* Social Icons */}
+  <div className="d-flex justify-content-center gap-3 my-3">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" width="30" />
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" width="30" />
+  </div>
+
+  {/* QR Code */}
+  <div className="mt-2">
+    <img
+      src="https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=https://yourcardlink.com"
+      alt="QR Code"
+      width="130"
+      height="130"
+    />
+    <p className="mt-2 small">Scan for more details</p>
+  </div>
+</div>
+</section>
 
         {/* Features Section */}
         <section className="py-5 bg-white">
