@@ -17,12 +17,13 @@ function Dashboard() {
 
       {/* Sidebar */}
       <aside className="sidebar">
-        <h2 className="logo">Cardify</h2>
+        <h2 className="logo">Idmate</h2>
         <nav className="nav">
+          <Link to="/profile">Profile</Link>
           <Link to="/">Dashboard</Link>
+         
           <Link to="/create">Create Card</Link>
           <Link to="/view">View Cards</Link>
-          <Link to="/profile">Profile</Link>
           <Link to="/login">Logout</Link>
         </nav>
       </aside>

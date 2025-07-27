@@ -24,6 +24,8 @@ html, body {
 /* Sidebar */
 .sidebar {
   width: 220px;
+  display: flex;
+  flex-direction: column;
   background-color: #292b4d;
   color: white;
   padding: 20px;
@@ -41,10 +43,11 @@ html, body {
 }
 
 .nav a {
-  display: block;
+  display: flex;
+  flex-direction: column;
   color: #c7c9ff;
   text-decoration: none;
-  padding: 10px 0;
+  padding: 22px ;
   transition: 0.3s;
 }
 
@@ -56,7 +59,7 @@ html, body {
 .main {
   flex: 1;
   padding: 30px;
-  margin-left: 220px; /* space for fixed sidebar */
+  margin-left: -200px; /* space for fixed sidebar */
 }
 
 .dashboard-header h1 {
@@ -92,7 +95,7 @@ html, body {
 
 /* Cards */
 .dashboard-cards {
-  display: grid;
+  display: flex;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 20px;
   margin-bottom: 30px;

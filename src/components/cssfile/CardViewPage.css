@@ -1,0 +1,243 @@
+/* Basic styling for the entire page container */
+.card-view-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensure it takes full viewport height */
+  background: linear-gradient(to bottom right, #e3f2fd, #fff); /* Light gradient background */
+  padding: 20px;
+  box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+/* Styling for the digital card itself */
+.digital-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+  padding: 30px;
+  width: 100%;
+  max-width: 400px; /* Max width for the card */
+  text-align: center;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+  transform: translateY(0); /* Initial state for animation */
+  animation: fadeInScale 0.5s ease-out forwards; /* Simple animation on load */
+}
+
+/* Keyframe animation for card appearance */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Card Header styles */
+.card-header {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee; /* Subtle separator */
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%; /* Circular avatar */
+  object-fit: cover;
+  border: 3px solid #0d6efd; /* Blue border around avatar */
+  margin-bottom: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0d6efd;
+  margin-bottom: 5px;
+}
+
+.card-title {
+  font-size: 16px;
+  color: #555;
+  margin-top: 0;
+}
+
+/* Section styling within the card */
+.card-section {
+  text-align: left; /* Align text left within sections */
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.card-section:last-of-type {
+  border-bottom: none; /* No border for the last section */
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.card-section h3 {
+  font-size: 18px;
+  color: #0d6efd;
+  margin-top: 0;
+  margin-bottom: 10px;
+  border-left: 4px solid #0d6efd; /* Accent border */
+  padding-left: 10px;
+}
+
+.card-section p {
+  font-size: 15px;
+  margin: 8px 0;
+  color: #444;
+  display: flex; /* For icon alignment if added */
+  align-items: center;
+  gap: 8px; /* Space between icon and text */
+}
+
+.card-section a {
+  color: #0d6efd;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.card-section a:hover {
+  color: #0b5ed7;
+  text-decoration: underline;
+}
+
+/* Action buttons */
+.card-actions {
+  display: flex;
+  flex-direction: column; /* Stack buttons vertically */
+  gap: 15px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.action-button {
+  padding: 12px 25px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  width: 100%; /* Full width buttons */
+  box-sizing: border-box;
+}
+
+.primary-action {
+  background-color: #0d6efd;
+  color: white;
+  box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3);
+}
+
+.primary-action:hover {
+  background-color: #0b5ed7;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(13, 110, 253, 0.4);
+}
+
+.secondary-action {
+  background-color: white;
+  color: #0d6efd;
+  border: 2px solid #0d6efd;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.secondary-action:hover {
+  background-color: #e3f2fd;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* QR Code Placeholder */
+.qr-code-placeholder {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.qr-code-img {
+  width: 120px;
+  height: 120px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.qr-text {
+  font-size: 14px;
+  color: #777;
+  margin-top: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+  .digital-card {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .card-header {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+  }
+
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .card-name {
+    font-size: 24px;
+  }
+
+  .card-title {
+    font-size: 14px;
+  }
+
+  .card-section {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+  }
+
+  .card-section h3 {
+    font-size: 16px;
+  }
+
+  .card-section p {
+    font-size: 14px;
+  }
+
+  .card-actions {
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .action-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .qr-code-placeholder {
+    margin-top: 20px;
+    padding-top: 15px;
+  }
+
+  .qr-code-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .qr-text {
+    font-size: 12px;
+  }
+}

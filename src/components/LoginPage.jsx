@@ -22,9 +22,9 @@ const LoginPage = () => {
      
         <form className="FirstPage" onSubmit={handleLogin}>     
           <h3>Login to Your Account</h3>
-          <input type="email" placeholder="Email Address" required />
-          <input type="password" placeholder="Password" required />
-          <button type="submit">Login</button>
+          <input type="email" className="t1" placeholder="Email Address" required />
+          <input type="password" className="t2" placeholder="Password" required />
+          <button type="submit" className="t3">Login</button>
           <p className="register-link">
             Don't have an account? <a href="/RegisterPage">Register here</a>
           </p>

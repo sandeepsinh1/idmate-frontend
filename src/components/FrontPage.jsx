@@ -1,64 +1,70 @@
-import React from 'react';
-import './cssfile/FrontPage.css'; // Import the CSS below or use inline styles
-import { useNavigate } from 'react-router-dom';
+import React from "react";
 
-export default function LandingPage() {
-  const navigate = useNavigate();
-
+const FrontPage = () => {
   return (
-    <div className="landing-page">
+    <div className="landing-page bg-light text-dark">
       {/* Header */}
-      <header className="header">
-        <div className="logo">Digital Card</div>
-        <div className="nav-buttons">
-          <button className="login-btn" onClick={() => navigate('/login')}>Login</button>
-          <button className="register-btn" onClick={() => navigate('/register')}>Register</button>
+      <header className="bg-white shadow-sm py-3 px-4 d-flex justify-content-between align-items-center">
+        <div className="fw-bold fs-4 text-primary">MyApp</div>
+        <div>
+          <button className="btn btn-outline-primary me-2">Login</button>
+          <button className="btn btn-primary">Register</button>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="hero-section">
-        <h1>Create & Share Your Digital Identity</h1>
-        <p>The universal tool to design and share your ID for business, shop, or yourself — anytime, anywhere.</p>
-
-        <div className="cta-buttons">
-          <button className="get-started" onClick={() => navigate('/register')}>Get Started</button>
-          <button className="demo-btn" onClick={() => navigate('/view-card')}>Try Demo</button>
-        </div>
-
-        <div className="sample-card">
-          <h2>John Doe</h2>
-          <p>Owner - JD Store</p>
-          <p>📞 ‪+91 9876543210‬</p>
-          <p>📍 Indore, MP</p>
-          <p>🌐 facebook.com/john</p>
+      <section className="text-center py-5 bg-white">
+        <h1 className="text-primary fw-bold">Create Your Digital Card</h1>
+        <p className="lead">Make your presence professional and unique</p>
+        <div className="d-flex justify-content-center gap-2 mt-3">
+          <button className="btn btn-primary px-4">Get Started</button>
+          <button className="btn btn-outline-primary px-4">Learn More</button>
         </div>
       </section>
 
+      {/* Sample Card */}
+      <div className="container my-5">
+        <div className="card mx-auto" style={{ maxWidth: "300px" }}>
+          <div className="card-body text-center">
+            <h5 className="card-title">John Doe</h5>
+            <p className="card-text mb-1">Web Developer</p>
+            <p className="card-text">john@example.com</p>
+          </div>
+        </div>
+      </div>
+
       {/* Features */}
-      <section className="features">
-        <div className="feature-box">
-          <h4>💼 Custom Card</h4>
-          <p>Create cards with your unique brand</p>
-        </div>
-        <div className="feature-box">
-          <h4>🔗 Easy Sharing</h4>
-          <p>Share via link, QR, or WhatsApp</p>
-        </div>
-        <div className="feature-box">
-          <h4>🔒 Secure</h4>
-          <p>Your data is protected with encryption</p>
-        </div>
-        <div className="feature-box">
-          <h4>📱 Mobile Friendly</h4>
-          <p>Works great on all devices</p>
+      <section className="py-5 bg-light">
+        <div className="container">
+          <div className="row text-center">
+            <div className="col-md-4 mb-4">
+              <div className="p-4 bg-white rounded shadow-sm">
+                <h5 className="text-primary">Easy to Use</h5>
+                <p>Create a card in just 2 minutes</p>
+              </div>
+            </div>
+            <div className="col-md-4 mb-4">
+              <div className="p-4 bg-white rounded shadow-sm">
+                <h5 className="text-primary">Fully Customizable</h5>
+                <p>Add your brand colors, links, and more</p>
+              </div>
+            </div>
+            <div className="col-md-4 mb-4">
+              <div className="p-4 bg-white rounded shadow-sm">
+                <h5 className="text-primary">Share Anywhere</h5>
+                <p>Send your card via WhatsApp, email, or QR</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="footer">
-        &copy; 2025 Digital Card | Privacy Policy | Terms | Contact Us
+      <footer className="text-center py-3 bg-white border-top">
+        <small>&copy; 2025 MyApp. All rights reserved.</small>
       </footer>
- </div>
-);
-}
+    </div>
+  );
+};
+
+export default FrontPage;
