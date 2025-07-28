@@ -19,10 +19,11 @@ import FeaturesPage from './staticpage/FeaturesPage'
 import AboutPage from './staticpage/AboutPage'
 import SampleCardPage from './components/SampleCardPage';
 import FirstPage from './components/FirstPage';
+import DigitalCardDisplay from './components/DigitalCardDisplay';
 function AppWrapper()
 {
 const location =useLocation();
-  const hideHeaderPaths=['/RegisterPage','/LoginPage','/SampleCardPage'];
+  const hideHeaderPaths=['/RegisterPage','/LoginPage','/SampleCardPage','/FeaturesPage','/CardView'];
   return(
     <>
         {!hideHeaderPaths.includes(location.pathname)&&<HeaderPage/>}
@@ -35,11 +36,13 @@ const location =useLocation();
         <Route path="/DashBoard" element={<Dashboard/>}/>
         <Route path="/AboutPage" element={<AboutPage/>}/>
         <Route path="/SampleCardPage" element={<SampleCardPage/>}/>
+        <Route path="/DigitalCardDisplay" element={<DigitalCardDisplay/>}/>
         <Route path="/" element={<LandingPage/>}/>
         <Route path="/CardCreationFreePage" element={<CardCreationFreePage/>}/>
         <Route path="/CardCreationPaidPage" element={<CardCreationPaidPage/>}/>
         <Route path="/CardViewPage" element={<CardViewPage/>}/>
         <Route path="/FirstPage" element={<FirstPage/>}/>
+
         </Routes>
   
     </>

@@ -6,7 +6,7 @@ const LandingPage = () => {
     
     <div className="d-flex flex-column min-vh-100 bg-light text-dark">
       {/* Main Content */}
-          <main style={{ paddingTop: '28rem' }}>
+          <main style={{ paddingTop: '45rem' }}>
   {/* Hero Section */}
         <section className="text-center py-4 px-3 bg-light bg-gradient">
           <h1 className="text-primary display-5 mb-3">

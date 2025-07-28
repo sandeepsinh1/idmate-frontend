@@ -1,7 +1,7 @@
 // src/pages/FeaturesPage.js
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import {Link} from 'react-router-dom'
 const FeaturesPage = () => {
   const features = [
     {
@@ -38,6 +38,30 @@ const FeaturesPage = () => {
 
   return (
     <section style={{ paddingTop: '5rem' }}>
+      <div className="d-flex justify-content-between align-items-center px-4 py-2">
+        
+        <div>
+          <span className="h5 fw-bold text-warning me-2">Idmate</span>
+          <span className="text-primary small">Say Hello with a Tap.</span>
+        </div>
+
+        <div className="d-flex gap-2">
+          <Link to="/">
+            <button className="btn btn-outline-primary">Home</button>
+          </Link>
+          <Link to="/RegistrationPage">
+            <button className="btn btn-outline-primary">Go to Registration</button>
+          </Link>
+          <Link to="/PricingPage">
+            <button className="btn btn-outline-primary">Pricing</button>
+          </Link>
+          <Link to="/AboutPage">
+            <button className="btn btn-outline-primary">About Us</button>
+          </Link>
+        </div>
+
+      </div>
+ 
       <div className="container text-center">
         <h1 className="mb-3 fw-bold text-dark">Why Choose Our Digital Card?</h1>
         <p className="mb-5 text-secondary fs-5">

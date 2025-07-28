@@ -38,9 +38,13 @@ if(response.status===200)
       alert(response.data); // backend success message
         navigate('/LoginPage')
 }
+else
+{
+  alert(response.data); // backend success message
+}
       } catch (error) {
       console.error(error);
-      alert('Registration failed');
+      alert('Registration Failed');
     }
   };
 
