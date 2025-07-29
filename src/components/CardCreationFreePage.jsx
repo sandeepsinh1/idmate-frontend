@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DigitalCardDisplay from '../components/DigitalCardDisplay'; // Import the new component
-
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const CardCreationFreePage = () => {
+const navigate=useNavigate();
+  
   const [formData, setFormData] = useState({
     name: '',
     title: '', // This will be used for a tagline or secondary title if desired
@@ -10,19 +13,20 @@ const CardCreationFreePage = () => {
     email: '', // Not used in the current card design, but kept for data collection
     address: '',
     website: '',
-    linkedin: '', // Re-purposed for Instagram
+    instagram: '', // Re-purposed for Instagram
     facebook: '', // Re-purposed for WhatsApp
+    whatsapp: '', // Re-purposed for WhatsApp
     avatar: '',
     about: '' // Used for categories
   });
 
-  const [cardGenerated, setCardGenerated] = useState(false);
+ const [cardGenerated, setCardGenerated] = useState(false);
 
+  
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevData => ({
-      ...prevData,
-      [name]: value
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -35,17 +39,53 @@ const CardCreationFreePage = () => {
       }));
     }
   };
+// ths is correct work after that
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Card Data Submitted:', formData);
-    setCardGenerated(true); // Set to true to display the card
-  };
 
   // If the card is generated, display the DigitalCardDisplay component
   if (cardGenerated) {
     return <DigitalCardDisplay formData={formData} />;
   }
+
+   const handleSubmit = async (e) => {
+    e.preventDefault();
+ console.log('Card Data Submitted:', formData);
+    setCardGenerated(true); // Set to true to display the card
+   
+        // If the card is generated, display the DigitalCardDisplay component
+ 
+ try {
+      const response = await axios.post('http://localhost:8080/api/cards/insertDetail', {
+        name: formData.name,
+      title:formData.title, // This will be used for a tagline or secondary title if desired
+    phone: formData.phone,
+    email: formData.email, // Not used in the current card design, but kept for data collection
+    address: formData.address,
+    website: formData.website,
+    instagram: formData.instagram, // Re-purposed for Instagram
+    facebook: formData.facebook, // Re-purposed for WhatsApp
+    avatar: formData.avatar,
+    whatsapp: formData.whatsapp  ? `https://wa.me/91${formData.whatsapp.replace(/\D/g, '')}`  : '',
+
+    about: formData.about 
+
+      });
+if(response.status===200)
+{
+      alert(response.data); // backend success message
+  return <DigitalCardDisplay formData={formData} />;
+    
+}
+else
+{
+  alert(response.data); // backend success message
+}
+      } catch (error) {
+      console.error(error);
+      alert('CardNOtGenerated');
+    }
+ };
+
 
   return (
     <div className="d-flex flex-column min-vh-100 bg-light text-dark">
@@ -109,13 +149,27 @@ const CardCreationFreePage = () => {
               <input type="url" className="form-control" id="website" name="website" value={formData.website} onChange={handleChange} placeholder="https://yourwebsite.com" />
             </div>
             <div className="mb-3">
-              <label htmlFor="linkedin" className="form-label">Instagram Profile URL (Optional)</label>
-              <input type="url" className="form-control" id="linkedin" name="linkedin" value={formData.linkedin} onChange={handleChange} placeholder="https://instagram.com/yourprofile" />
+              <label htmlFor="instagram" className="form-label">Instagram Profile URL (Optional)</label>
+              <input type="url" className="form-control" id="instagram" name="instagram" value={formData.instagram} onChange={handleChange} placeholder="https://instagram.com/yourprofile" />
             </div>
             <div className="mb-3">
-              <label htmlFor="facebook" className="form-label">WhatsApp Link (Optional)</label>
+              <label htmlFor="facebook" className="form-label">Facebook Link (Optional)</label>
               <input type="url" className="form-control" id="facebook" name="facebook" value={formData.facebook} onChange={handleChange} placeholder="https://wa.me/919876543210" />
             </div>
+ <div className="mb-3">
+              <label htmlFor="whatsapp" className="form-label">WhatsApp Link (Optional)</label>
+                      <input type="tel" 
+            pattern="[0-9]{10}"
+            maxLength={10}
+            className="form-control"
+            id="whatsapp"
+            name="whatsapp"
+            value={formData.whatsapp}
+            onChange={handleChange}
+            placeholder="e.g. 9876543210"
+          />
+          <small className="form-text text-muted">Enter 10-digit Indian mobile number without +91</small>
+        </div>
 
             <div className="text-center">
               <button type="submit" className="btn btn-primary px-4 py-2">Generate My Card</button>
