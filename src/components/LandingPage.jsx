@@ -51,7 +51,7 @@ const LandingPage = () => {
 
   {/* Name */}
   <h2 className="fw-bold text-uppercase mb-2" style={{ color: '#1e1e1e' }}>
-    shri dev
+    Shree Collection
   </h2>
 
   {/* Tagline */}

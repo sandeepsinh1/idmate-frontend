@@ -16,7 +16,7 @@ const FirstPage = () => {
           </p>
 
           <div className="d-flex flex-wrap justify-content-center gap-3 mb-4">
-            <Link to="/CardCreationPaidPage">
+            <Link to="/FormPage">
               <button className="btn btn-primary rounded-pill px-4 py-2 fw-semibold">
                 Create Paid Card
               </button>

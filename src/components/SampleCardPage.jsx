@@ -14,7 +14,7 @@ const SampleCardPage = () => {
   const employeeImg = "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=600&q=80";
 
   return (
-    <div container-fluid bg-light sticky-top shadow-sm style={{ paddingTop: '310rem' }}>
+    <div container-fluid bg-light sticky-top shadow-sm style={{ paddingTop: '365rem' }}>
  <div className="d-flex justify-content-between align-items-center px-4 py-2">
         
         <div>

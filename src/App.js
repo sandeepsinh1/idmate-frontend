@@ -20,6 +20,17 @@ import AboutPage from './staticpage/AboutPage'
 import SampleCardPage from './components/SampleCardPage';
 import FirstPage from './components/FirstPage';
 import DigitalCardDisplay from './components/DigitalCardDisplay';
+import FormPage from './cardoption/FormPage';
+import CardGenerator from './cardoption/CardGenerator';
+import CardSelectionPage from './cardoption/CardSelectionPage';
+import CardTemplate2 from './cardoption/CardTemplate2';
+import CardTemplate1 from './cardoption/CardTemplate1';
+import CardTemplate3 from './cardoption/CardTemplate3';
+import CardTemplate4 from './cardoption/CardTemplate4';
+import CardTemplate5 from './cardoption/CardTemplate5';
+import CardTemplate6 from './cardoption/CardTemplate6';
+import CardTemplate7 from './cardoption/CardTemplate7';
+import CardTemplate8 from './cardoption/CardTemplate8';
 function AppWrapper()
 {
 const location =useLocation();
@@ -37,6 +48,18 @@ const location =useLocation();
         <Route path="/AboutPage" element={<AboutPage/>}/>
         <Route path="/SampleCardPage" element={<SampleCardPage/>}/>
         <Route path="/DigitalCardDisplay" element={<DigitalCardDisplay/>}/>
+        <Route path="/FormPage" element={<FormPage/>}/>
+        <Route path="/CardSelectionPage" element={<CardSelectionPage/>}/>
+        <Route path="/CardGenerator" element={<CardGenerator/>}/>
+        <Route path="/CardTemplate1" element={<CardTemplate1/>}/>
+        <Route path="/CardTemplate2" element={<CardTemplate2/>}/>
+        <Route path="/CardTemplate3" element={<CardTemplate3/>}/>
+        <Route path="/CardTemplate4" element={<CardTemplate4/>}/>
+        <Route path="/CardTemplate5" element={<CardTemplate5/>}/>
+        <Route path="/CardTemplate6" element={<CardTemplate6/>}/>
+        <Route path="/CardTemplate8" element={<CardTemplate8/>}/>
+        <Route path="/CardTemplate7" element={<CardTemplate7/>}/>
+        
         <Route path="/" element={<LandingPage/>}/>
         <Route path="/CardCreationFreePage" element={<CardCreationFreePage/>}/>
         <Route path="/CardCreationPaidPage" element={<CardCreationPaidPage/>}/>
