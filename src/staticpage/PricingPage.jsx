@@ -10,11 +10,11 @@ const PricingPage = () => {
         {/* Basic Plan */}
         <div className="card">
           <h2 className="plan-title">Basic</h2>
-          <p className="price">₹199 / mo</p>
+          <p className="price">₹49 / mo</p>
           <ul className="features">
-            <li>1 User</li>
-            <li>5GB Storage</li>
-            <li>Email Support</li>
+            <li>In You Edit Card Only twice</li>
+            <li>It Valid for 3 Month</li>
+            <li>It have No option of Card Design</li>
           </ul>
           <button className="btn">Choose Plan</button>
         </div>
@@ -22,10 +22,11 @@ const PricingPage = () => {
         {/* Standard Plan */}
         <div className="card highlighted">
           <h2 className="plan-title">Standard</h2>
-          <p className="price">₹499 / mo</p>
+          <p className="price">₹99 / mo</p>
           <ul className="features">
-            <li>5 Users</li>
-            <li>50GB Storage</li>
+            <li>In You Edit Card Once in a month</li>
+            <li>It Valid for 6 Month</li>
+            <li>But you have limited Design</li>
             <li>Priority Support</li>
           </ul>
           <button className="btn">Most Popular</button>
@@ -34,10 +35,12 @@ const PricingPage = () => {
         {/* Premium Plan */}
         <div className="card">
           <h2 className="plan-title">Premium</h2>
-          <p className="price">₹999 / mo</p>
+          <p className="price">₹199 / mo</p>
           <ul className="features">
-            <li>Unlimited Users</li>
-            <li>500GB Storage</li>
+            <li>Unlimited</li>
+            <li>you have limited Design</li>
+            <li>It Valid for 1 year</li>
+            
             <li>Phone & Email Support</li>
           </ul>
           <button className="btn">Choose Plan</button>

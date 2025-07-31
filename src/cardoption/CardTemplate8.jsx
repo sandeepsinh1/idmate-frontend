@@ -1,46 +1,67 @@
 import React from 'react';
-import { Phone, MapPin, ShoppingBag, Instagram, MessageCircle } from 'lucide-react';
+import { Phone, Globe, MapPin, Twitter, Facebook, MessageCircle, Linkedin } from 'lucide-react';
 
-// CardTemplate8 (based on samplecard.jpg)
-const CardTemplate8 = ({ name = "shri dev", category = "Men's Wear | Women's Wear | Kids Collection", phone = "07610316422", location = "Meena Mansion, 274Abhinandan Nagar, Shyam Nagar Annex", whatsappLink = "#", instagramLink = "#", qrCodeSrc = "https://placehold.co/100x100/E5E7EB/000000?text=QR" }) => {
+const CardTemplate8 = ({
+    companyName = "GENADIN REAL ESTATE",
+    logoSrc = "https://placehold.co/50x50/FF7F50/FFFFFF?text=Logo",
+    fullName = "MICHAEL SMITH",
+    title = "Creative Director",
+    phone = "+012 078 5688",
+    website = "www.website.com",
+    address = "Street View Address, 012 North York, NY",
+    twitterLink = "#", facebookLink = "#", whatsappLink = "#", linkedinLink = "#",
+    preview = false // NEW
+}) => {
     return (
-        <div className="w-72 h-[450px] bg-gradient-to-br from-amber-50 to-orange-100 rounded-3xl shadow-xl p-6 flex flex-col items-center justify-between text-gray-800 font-inter">
-            {/* Logo */}
-            <div className="flex flex-col items-center mb-4">
-                <ShoppingBag size={32} className="text-gray-600 mb-1" />
-                <p className="text-sm font-semibold">Logo</p>
-            </div>
+        <div
+            className={`${preview ? '' : 'd-flex justify-content-center align-items-center'} container`}
+            style={{
+                height: preview ? 'auto' : '100vh',
+                backgroundColor: preview ? 'transparent' : '#141111ff'
+            }}
+        >
+            <div className="card shadow-sm rounded-5 border-0 p-4"
+                style={{
+                    width: preview ? '100%' : '22rem',
+                    maxWidth: '22rem',
+                    background: 'light',
+                    position: 'relative',
+                    zIndex: 1
+                }}
+            >
+                <div className="text-center mb-3">
+                    <img src={logoSrc} alt="Logo" className="rounded mb-2" style={{ width: 50, height: 50 }} />
+                    <h6 className="text-muted mb-2" style={{ fontSize: '0.85rem', fontWeight: 500 }}>{companyName}</h6>
+                    <h4 className="fw-bold mb-1" style={{ fontSize: '1.5rem' }}>{fullName}</h4>
+                    <p className="text-secondary" style={{ fontSize: '0.95rem' }}>{title}</p>
+                </div>
 
-            {/* Name and Category */}
-            <div className="text-center mb-4">
-                <h2 className="text-3xl font-bold mb-1">{name}</h2>
-                <p className="text-sm text-gray-600">{category}</p>
-            </div>
+                <ul className="list-unstyled ps-0 mb-4" style={{ fontSize: '0.9rem' }}>
+                    <li className="d-flex align-items-center mb-2">
+                        <Phone size={18} className="me-2 text-secondary" /> {phone}
+                    </li>
+                    <li className="d-flex align-items-center mb-2">
+                        <Globe size={18} className="me-2 text-secondary" /> {website}
+                    </li>
+                    <li className="d-flex align-items-center">
+                        <MapPin size={18} className="me-2 text-secondary" /> {address}
+                    </li>
+                </ul>
 
-            {/* Contact Info */}
-            <div className="space-y-3 text-center mb-4">
-                <p className="flex items-center justify-center text-lg">
-                    <Phone size={20} className="mr-2 text-red-500" /> {phone}
-                </p>
-                <p className="flex items-center justify-center text-lg">
-                    <MapPin size={20} className="mr-2 text-red-500" /> {location}
-                </p>
-            </div>
-
-            {/* Social Icons */}
-            <div className="flex justify-center space-x-4 mb-4">
-                <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="bg-green-500 p-2 rounded-full shadow-md hover:scale-105 transition-transform">
-                    <MessageCircle size={24} className="text-white" />
-                </a>
-                <a href={instagramLink} target="_blank" rel="noopener noreferrer" className="bg-gradient-to-tr from-purple-500 via-pink-500 to-orange-500 p-2 rounded-full shadow-md hover:scale-105 transition-transform">
-                    <Instagram size={24} className="text-white" />
-                </a>
-            </div>
-
-            {/* QR Code */}
-            <div className="mt-auto flex flex-col items-center">
-                <img src={qrCodeSrc} alt="QR Code" className="w-32 h-32 rounded-lg shadow-md mb-2" />
-                <p className="text-sm text-gray-600">Scan for more details</p>
+                <div className="d-flex justify-content-center gap-3">
+                    <a href={twitterLink} className="btn btn-outline-primary btn-sm rounded-circle">
+                        <Twitter size={18} />
+                    </a>
+                    <a href={facebookLink} className="btn btn-outline-primary btn-sm rounded-circle">
+                        <Facebook size={18} />
+                    </a>
+                    <a href={whatsappLink} className="btn btn-outline-success btn-sm rounded-circle">
+                        <MessageCircle size={18} />
+                    </a>
+                    <a href={linkedinLink} className="btn btn-outline-info btn-sm rounded-circle">
+                        <Linkedin size={18} />
+                    </a>
+                </div>
             </div>
         </div>
     );

@@ -1,44 +1,70 @@
 import React from 'react';
+import { Phone, Globe, MapPin, Twitter, Facebook, MessageCircle, Linkedin } from 'lucide-react';
 
-const CardTemplate4 = ({ name = "CARD 4", category = "Men's Wear | Women's Wear | Kids", phone, location = "Some City, Zone 4", whatsappLink, instagramLink, qrCodeSrc }) => {
-  return (
-    <div className="w-100 rounded-xl shadow-lg bg-green text-center p-4 space-y-3">
-      {/* User Icon */}
-      <div className="text-4xl text-blue-600 mx-auto">
-        <i className="bi bi-person-circle"></i>
-      </div>
+const CardTemplate4 = ({
+    companyName = "GENADIN REAL ESTATE",
+    logoSrc = "https://placehold.co/50x50/FF7F50/FFFFFF?text=Logo",
+    fullName = "MICHAEL SMITH",
+    title = "Creative Director",
+    phone = "+012 078 5688",
+    website = "www.website.com",
+    address = "Street View Address, 012 North York, NY",
+    twitterLink = "#", facebookLink = "#", whatsappLink = "#", linkedinLink = "#",
+    preview = false // NEW
+}) => {
+    return (
+        <div
+            className={`${preview ? '' : 'd-flex justify-content-center align-items-center'} container`}
+            style={{
+                height: preview ? 'auto' : '100vh',
+                backgroundColor: preview ? 'transparent' : '#141111ff'
+            }}
+        >
+            <div className="card shadow-sm rounded-5 border-0 p-4"
+                style={{
+                    width: preview ? '100%' : '22rem',
+                    maxWidth: '22rem',
+                    background: 'dark',
+                    position: 'relative',
+                    zIndex: 1
+                }}
+            >
+                <div className="text-center mb-3">
+                    <img src={logoSrc} alt="Logo" className="rounded mb-2" style={{ width: 50, height: 50 }} />
+                    <h6 className="text-muted mb-2" style={{ fontSize: '0.85rem', fontWeight: 500 }}>{companyName}</h6>
+                    <h4 className="fw-bold mb-1" style={{ fontSize: '1.5rem' }}>{fullName}</h4>
+                    <p className="text-secondary" style={{ fontSize: '0.95rem' }}>{title}</p>
+                </div>
 
-      {/* Name and Category */}
-      <h2 className="text-xl font-bold">{name}</h2>
-      <p className="text-sm">{category}</p>
+                <ul className="list-unstyled ps-0 mb-4" style={{ fontSize: '0.9rem' }}>
+                    <li className="d-flex align-items-center mb-2">
+                        <Phone size={18} className="me-2 text-secondary" /> {phone}
+                    </li>
+                    <li className="d-flex align-items-center mb-2">
+                        <Globe size={18} className="me-2 text-secondary" /> {website}
+                    </li>
+                    <li className="d-flex align-items-center">
+                        <MapPin size={18} className="me-2 text-secondary" /> {address}
+                    </li>
+                </ul>
 
-      {/* Phone */}
-      <p className="text-red-600 mt-2">
-        📞 {phone}
-      </p>
-
-      {/* Location */}
-      <p className="text-red-600">
-        📍 {location}
-      </p>
-
-      {/* Social Icons */}
-      <div className="flex justify-center space-x-4 text-2xl mt-2">
-        <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-          <i className="bi bi-whatsapp text-green-600"></i>
-        </a>
-        <a href={instagramLink} target="_blank" rel="noopener noreferrer">
-          <i className="bi bi-instagram text-pink-500"></i>
-        </a>
-      </div>
-
-      {/* QR Code */}
-      <div className="mt-3">
-        <img src={qrCodeSrc} alt="QR Code" className="w-24 h-24 mx-auto" />
-        <p className="text-sm text-gray-800 mt-1">Scan for more details</p>
-      </div>
-    </div>
-  );
+                <div className="d-flex justify-content-center gap-3">
+                    <a href={twitterLink} className="btn btn-outline-primary btn-sm rounded-circle">
+                        <Twitter size={18} />
+                    </a>
+                    <a href={facebookLink} className="btn btn-outline-primary btn-sm rounded-circle">
+                        <Facebook size={18} />
+                    </a>
+                    <a href={whatsappLink} className="btn btn-outline-success btn-sm rounded-circle">
+                        <MessageCircle size={18} />
+                    </a>
+                    <a href={linkedinLink} className="btn btn-outline-info btn-sm rounded-circle">
+                        <Linkedin size={18} />
+                    </a>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default CardTemplate4;

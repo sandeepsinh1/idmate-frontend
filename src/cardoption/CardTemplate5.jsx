@@ -1,63 +1,70 @@
 import React from 'react';
-import { Phone, Mail, Globe, MapPin, QrCode } from 'lucide-react';
+import { Phone, Globe, MapPin, Twitter, Facebook, MessageCircle, Linkedin } from 'lucide-react';
 
-// CardTemplateWhiteWave (based on images.png)
-const CardTemplateWhiteWave = ({
-    companyName = "COMPANY",
-    companyLogoSrc = "https://placehold.co/40x40/FFFFFF/000000?text=Logo", // Placeholder for wing logo
-    fullName = "MICHAEL STANLEY",
-    title = "BUSINESS MANAGER",
-    phone = "+555-555-5555",
-    email = "YOURINFO@EMAIL.COM",
-    website = "WWW.WEBSITE.COM",
-    location = "ADD YOUR LOCATION HERE",
-    qrCodeSrc = "https://placehold.co/60x60/E5E7EB/000000?text=QR"
+const CardTemplate5 = ({
+    companyName = "GENADIN REAL ESTATE",
+    logoSrc = "https://placehold.co/50x50/FF7F50/FFFFFF?text=Logo",
+    fullName = "MICHAEL SMITH",
+    title = "Creative Director",
+    phone = "+012 078 5688",
+    website = "www.website.com",
+    address = "Street View Address, 012 North York, NY",
+    twitterLink = "#", facebookLink = "#", whatsappLink = "#", linkedinLink = "#",
+    preview = false // NEW
 }) => {
     return (
-        <div className="w-[500px] h-64 bg-white rounded-xl shadow-lg flex relative overflow-hidden font-inter">
-            {/* Right Wave Pattern */}
-            <div className="absolute inset-y-0 right-0 w-1/3 bg-gray-100 rounded-r-xl flex items-center justify-center overflow-hidden">
-                {/* SVG for wave pattern */}
-                <svg className="absolute w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <path d="M0,0 C30,50 70,50 100,0 L100,100 L0,100 Z" fill="#E5E7EB" />
-                    <path d="M0,10 C30,60 70,60 100,10 L100,100 L0,100 Z" fill="#D1D5DB" />
-                    <path d="M0,20 C30,70 70,70 100,20 L100,100 L0,100 Z" fill="#9CA3AF" />
-                </svg>
-            </div>
-
-            {/* Left Section - Company Logo and Vertical Line */}
-            <div className="w-1/4 flex flex-col items-center justify-between p-6 z-10">
-                <div className="flex flex-col items-center">
-                    <img src={companyLogoSrc} alt="Company Logo" className="w-10 h-10 mb-2" />
-                    <p className="text-sm font-semibold text-gray-700">{companyName}</p>
+        <div
+            className={`${preview ? '' : 'd-flex justify-content-center align-items-center'} container`}
+            style={{
+                height: preview ? 'auto' : '100vh',
+                backgroundColor: preview ? 'transparent' : '#141111ff'
+            }}
+        >
+            <div className="card shadow-sm rounded-5 border-0 p-4"
+                style={{
+                    width: preview ? '100%' : '22rem',
+                    maxWidth: '22rem',
+                    background: 'yellow',
+                    position: 'relative',
+                    zIndex: 1
+                }}
+            >
+                <div className="text-center mb-3">
+                    <img src={logoSrc} alt="Logo" className="rounded mb-2" style={{ width: 50, height: 50 }} />
+                    <h6 className="text-muted mb-2" style={{ fontSize: '0.85rem', fontWeight: 500 }}>{companyName}</h6>
+                    <h4 className="fw-bold mb-1" style={{ fontSize: '1.5rem' }}>{fullName}</h4>
+                    <p className="text-secondary" style={{ fontSize: '0.95rem' }}>{title}</p>
                 </div>
-                <img src={qrCodeSrc} alt="QR Code" className="w-16 h-16 rounded-sm" />
-            </div>
 
-            {/* Vertical Blue Line */}
-            <div className="w-1 bg-blue-600 h-full z-10"></div>
+                <ul className="list-unstyled ps-0 mb-4" style={{ fontSize: '0.9rem' }}>
+                    <li className="d-flex align-items-center mb-2">
+                        <Phone size={18} className="me-2 text-secondary" /> {phone}
+                    </li>
+                    <li className="d-flex align-items-center mb-2">
+                        <Globe size={18} className="me-2 text-secondary" /> {website}
+                    </li>
+                    <li className="d-flex align-items-center">
+                        <MapPin size={18} className="me-2 text-secondary" /> {address}
+                    </li>
+                </ul>
 
-            {/* Right Section - Personal Details */}
-            <div className="flex-1 p-6 flex flex-col justify-center space-y-2 z-10">
-                <h3 className="text-2xl font-bold text-gray-900">{fullName.split(' ')[0]}<span className="font-normal text-gray-500 ml-1">{fullName.split(' ')[1]}</span></h3>
-                <p className="text-sm text-gray-600 mb-4">{title}</p>
-                <div className="space-y-2 text-sm text-gray-700">
-                    <p className="flex items-center">
-                        <Phone size={16} className="mr-2 text-gray-500" /> {phone}
-                    </p>
-                    <p className="flex items-center">
-                        <Mail size={16} className="mr-2 text-gray-500" /> {email}
-                    </p>
-                    <p className="flex items-center">
-                        <Globe size={16} className="mr-2 text-gray-500" /> {website}
-                    </p>
-                    <p className="flex items-center">
-                        <MapPin size={16} className="mr-2 text-gray-500" /> {location}
-                    </p>
+                <div className="d-flex justify-content-center gap-3">
+                    <a href={twitterLink} className="btn btn-outline-primary btn-sm rounded-circle">
+                        <Twitter size={18} />
+                    </a>
+                    <a href={facebookLink} className="btn btn-outline-primary btn-sm rounded-circle">
+                        <Facebook size={18} />
+                    </a>
+                    <a href={whatsappLink} className="btn btn-outline-success btn-sm rounded-circle">
+                        <MessageCircle size={18} />
+                    </a>
+                    <a href={linkedinLink} className="btn btn-outline-info btn-sm rounded-circle">
+                        <Linkedin size={18} />
+                    </a>
                 </div>
             </div>
         </div>
     );
 };
 
-export default CardTemplateWhiteWave;
+export default CardTemplate5;

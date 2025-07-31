@@ -1,0 +1,121 @@
+.card-template-container {
+  background-color: #a52a2a; /* Brown color - adjust as needed */
+  /* Subtle texture using a radial gradient */
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                    radial-gradient(circle, transparent 5px, rgba(0, 0, 0, 0.02) 6px, transparent 6px);
+  background-size: 20px 20px, 30px 30px;
+}
+/* DigitalCardDisplay.css */
+
+.card-background-container-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  /* Dynamic background color - you can change this from a prop later */
+  background: linear-gradient(to bottom right, #fceec4, #f9e2b1); /* Example background */
+}
+
+.card-custom-display {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 380px;
+  width: 100%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; /* Ensures padding doesn't increase total width */
+}
+
+.card-logo-display {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 5px solid #fff !important; /* White border for avatar */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-title-display {
+  font-family: 'Georgia', serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0;
+  text-transform: capitalize;
+}
+
+.card-text-category-display {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+}
+
+.card-contact-info-display p {
+  font-size: 1rem;
+  color: #444;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.card-icon-display {
+  font-size: 1.2rem;
+  color: #6c757d;
+  margin-right: 10px;
+}
+
+.card-social-icons-display {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.card-social-icon-link {
+  font-size: 2.5rem;
+  text-decoration: none;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Specific colors for social icons */
+.card-social-icon-link .bi-whatsapp {
+  color: #28a745; /* WhatsApp green */
+}
+
+.card-social-icon-link .bi-instagram {
+  color: #e4405f; /* Instagram pink/red */
+}
+
+.card-social-icon-link .bi-globe {
+  color: #007bff; /* Bootstrap primary blue for website */
+}
+
+
+.card-social-icon-link:hover {
+  transform: scale(1.1);
+}
+
+.card-qr-code-display {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  border: 5px solid #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.card-scan-text-display {
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 10px;
+}
+
+/* Ensure Bootstrap Icons are imported globally or here */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+
+/* Conditional rendering for empty fields */
+.card-content-item:empty {
+  display: none; /* Hide paragraphs if they are empty after rendering */
+}

@@ -43,8 +43,8 @@ const templates = [
         }
     },
     {
-        id: 'template-blue-wave',
-        name: 'Blue Wave',
+        id: 'template-black-minimal',
+        name: '1Blue Wave',
         component: CardTemplate6,
         props: {
             companyName: "GLOBAL TECH INC.",
@@ -137,9 +137,9 @@ const templates = [
     },
 ];
 
-const CardSelectionPage = () => {
+const CardSelectionPage = ({ formData }) => {
+  const userData = formData;
     const location = useLocation();
-    const userData = location.state || {};
     const [selectedTemplate, setSelectedTemplate] = useState(null);
 
     const handleSelect = (templateId) => {
@@ -147,40 +147,41 @@ const CardSelectionPage = () => {
     };
 
     return (
-        <div className="container py-5" style={{ marginTop: '20rem' }}>
+        <div className="container py-5" style={{ marginTop: '35rem' }}>
             <h2 className="text-center mb-5 fw-bold">✨ Select a Card Design</h2>
 
-            <div className="row g-4 justify-content-center">
-                {templates.map(({ id, name, component: TemplateComponent, props: templateProps }) => (
-                    <div key={id} className="col-sm-6 col-md-4 col-lg-3 d-flex">
-                        <div className="card shadow-lg rounded-4 text-center flex-fill p-3 border-0 bg-white">
-                            <h6 className="mb-3 fw-semibold">{name}</h6>
-                            <div className="preview-frame mb-3">
-                                <div className="preview-inner scale-down">
-                                    <TemplateComponent {...templateProps} />
-                                </div>
-                            </div>
-                            <button
-                                className={`btn w-100 ${selectedTemplate === id ? 'btn-success' : 'btn-outline-primary'}`}
-                                onClick={() => handleSelect(id)}
-                            >
-                                {selectedTemplate === id ? '✔ Selected' : 'Select This'}
-                            </button>
-                        </div>
-                    </div>
-                ))}
-            </div>
+           <div className="scroll-container d-flex overflow-auto px-3 py-4 gap-4">
+  {templates.map(({ id, name, component: TemplateComponent, props: templateProps }) => (
+    <div
+      key={id}
+      className="card shadow-lg rounded-4 text-center p-3 border-2 bg-white flex-shrink-0"
+      style={{ width: '250px', minWidth: '250px' }}
+    >
+      <h6 className="mb-3 fw-semibold">{name}</h6>
+      <div className="preview-frame mb-3">
+        <div className="preview-inner scale-down">
+          <TemplateComponent {...templateProps} />
+        </div>
+      </div>
+      <button
+        className={`btn w-100 ${selectedTemplate === id ? 'btn-success' : 'btn-outline-primary'}`}
+        onClick={() => handleSelect(id)}
+      >
+        {selectedTemplate === id ? '✔ Selected' : 'Select This'}
+      </button>
+    </div>
+  ))}
+</div>
 
             {selectedTemplate && (
                 <div className="mt-5 p-4 bg-light border rounded shadow-sm text-center">
                     <h4 className="mb-4">🎉 Your Selected Card</h4>
+                   
                     {React.createElement(
-                        templates.find(t => t.id === selectedTemplate).component,
-                        {
-                            ...templates.find(t => t.id === selectedTemplate).props,
-                            ...userData
-                        }
-                    )}
+  templates.find(t => t.id === selectedTemplate).component,
+  userData
+)}
+
                 </div>
             )}
         </div>

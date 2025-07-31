@@ -22,13 +22,17 @@ const LandingPage = () => {
                 Register 
               </button>
             </Link>
-            <Link to="/SampleCardPage">
+              <Link to="/SampleCardPage">
               <button className="btn btn-primary rounded-pill px-4 py-2 fw-semibold">
               Sample Card
               </button>
             </Link>
+            
            </div>
-
+       <p className="login-link">
+                        Already have an account? <Link to="/LoginPage">Login here</Link>
+                      </p>
+            
         <div
   className="card mx-auto text-center shadow-lg p-4"
   style={{

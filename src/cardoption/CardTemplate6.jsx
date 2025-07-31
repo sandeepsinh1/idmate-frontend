@@ -1,69 +1,66 @@
 import React from 'react';
-import { Phone, Mail, Globe, MapPin, Instagram, Facebook, Linkedin } from 'lucide-react';
+import { Phone, Globe, MapPin, Twitter, Facebook, MessageCircle, Linkedin } from 'lucide-react';
 
-// CardTemplate6 (based on business-cards-template-design-9f30e0b266403539d06aaf9ab984c943_screen.jpg)
 const CardTemplate6 = ({
-    companyName = "DOMINION REAL ESTATE COMPANY",
-    logoSrc = "https://placehold.co/60x60/ADD8E6/000000?text=Logo", // Placeholder for a circular logo
-    fullName = "MAXWELL MICHAEL A.",
-    title = "Chief Executive Office",
-    phone = "+1 23 45 789",
-    email = "info@dominionrealestate.com",
-    website = "www.dominionrealestate.com",
-    address = "Nextgen Company 123E Arapaho Road Dallas, TX 75248",
-    socialText = "Dominion Real Estate",
-    instagramLink = "#", facebookLink = "#", linkedinLink = "#", tiktokLink = "#", pinterestLink = "#"
+    companyName = "GENADIN REAL ESTATE",
+    logoSrc = "https://placehold.co/50x50/FF7F50/FFFFFF?text=Logo",
+    fullName = "MICHAEL SMITH",
+    title = "Creative Director",
+    phone = "+012 078 5688",
+    website = "www.website.com",
+    address = "Street View Address, 012 North York, NY",
+    twitterLink = "#", facebookLink = "#", whatsappLink = "#", linkedinLink = "#",
+    preview = false // NEW
 }) => {
     return (
-        <div className="w-[500px] h-64 bg-white rounded-xl shadow-lg flex relative overflow-hidden font-inter">
-            {/* Background Waves */}
-            <div className="absolute top-0 left-0 w-full h-full">
-                <div className="absolute -top-10 -right-10 w-48 h-48 bg-blue-400 opacity-20 transform rotate-45 rounded-full"></div>
-                <div className="absolute -top-20 -right-20 w-64 h-64 bg-blue-500 opacity-20 transform rotate-45 rounded-full"></div>
-                <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-blue-600 opacity-20 transform -rotate-45 rounded-full"></div>
-                <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-blue-700 opacity-20 transform -rotate-45 rounded-full"></div>
-                {/* More subtle wave shapes */}
-                <div className="absolute top-0 right-0 w-40 h-40 bg-blue-200 opacity-30 rounded-bl-full"></div>
-                <div className="absolute bottom-0 left-0 w-40 h-40 bg-blue-200 opacity-30 rounded-tr-full"></div>
-            </div>
-
-            {/* Left Section */}
-            <div className="w-1/3 p-6 flex flex-col justify-between items-center z-10">
-                <div className="flex flex-col items-center text-center">
-                    <img src={logoSrc} alt="Company Logo" className="w-16 h-16 rounded-full mb-2" />
-                    <p className="text-sm font-semibold text-gray-700">{companyName}</p>
+        <div
+            className={`${preview ? '' : 'd-flex justify-content-center align-items-center'} container`}
+            style={{
+                height: preview ? 'auto' : '100vh',
+                backgroundColor: preview ? 'transparent' : '#141111ff'
+            }}
+        >
+            <div className="card shadow-sm rounded-5 border-0 p-4"
+                style={{
+                    width: preview ? '100%' : '22rem',
+                    maxWidth: '22rem',
+                    background: 'red',
+                    position: 'relative',
+                    zIndex: 1
+                }}
+            >
+                <div className="text-center mb-3">
+                    <img src={logoSrc} alt="Logo" className="rounded mb-2" style={{ width: 50, height: 50 }} />
+                    <h6 className="text-muted mb-2" style={{ fontSize: '0.85rem', fontWeight: 500 }}>{companyName}</h6>
+                    <h4 className="fw-bold mb-1" style={{ fontSize: '1.5rem' }}>{fullName}</h4>
+                    <p className="text-secondary" style={{ fontSize: '0.95rem' }}>{title}</p>
                 </div>
-                <div className="text-xs text-gray-600 text-center">
-                    <p className="flex items-start mb-1">
-                        <MapPin size={14} className="mr-1 mt-0.5 text-blue-600 flex-shrink-0" />
-                        <span>{address}</span>
-                    </p>
-                    <div className="flex justify-center items-center mt-2 space-x-2">
-                        <a href={instagramLink} target="_blank" rel="noopener noreferrer"><Instagram size={16} className="text-gray-500 hover:text-pink-500" /></a>
-                        <a href={facebookLink} target="_blank" rel="noopener noreferrer"><Facebook size={16} className="text-gray-500 hover:text-blue-600" /></a>
-                        <a href={linkedinLink} target="_blank" rel="noopener noreferrer"><Linkedin size={16} className="text-gray-500 hover:text-blue-700" /></a>
-                        {/* Assuming TikTok and Pinterest icons are not in lucide-react, using simple text or placeholder */}
-                        <span className="text-gray-500 text-xs">TikTok</span>
-                        <span className="text-gray-500 text-xs">Pinterest</span>
-                        <span className="text-gray-700 text-xs ml-2">{socialText}</span>
-                    </div>
-                </div>
-            </div>
 
-            {/* Right Section */}
-            <div className="w-2/3 p-6 flex flex-col justify-center space-y-3 z-10">
-                <h3 className="text-xl font-bold text-gray-900">{fullName}</h3>
-                <p className="text-sm text-blue-600">{title}</p>
-                <div className="space-y-2 mt-4">
-                    <p className="flex items-center text-sm text-gray-700">
-                        <Phone size={16} className="mr-2 text-blue-600" /> {phone}
-                    </p>
-                    <p className="flex items-center text-sm text-gray-700">
-                        <Mail size={16} className="mr-2 text-blue-600" /> {email}
-                    </p>
-                    <p className="flex items-center text-sm text-gray-700">
-                        <Globe size={16} className="mr-2 text-blue-600" /> {website}
-                    </p>
+                <ul className="list-unstyled ps-0 mb-4" style={{ fontSize: '0.9rem' }}>
+                    <li className="d-flex align-items-center mb-2">
+                        <Phone size={18} className="me-2 text-secondary" /> {phone}
+                    </li>
+                    <li className="d-flex align-items-center mb-2">
+                        <Globe size={18} className="me-2 text-secondary" /> {website}
+                    </li>
+                    <li className="d-flex align-items-center">
+                        <MapPin size={18} className="me-2 text-secondary" /> {address}
+                    </li>
+                </ul>
+
+                <div className="d-flex justify-content-center gap-3">
+                    <a href={twitterLink} className="btn btn-outline-primary btn-sm rounded-circle">
+                        <Twitter size={18} />
+                    </a>
+                    <a href={facebookLink} className="btn btn-outline-primary btn-sm rounded-circle">
+                        <Facebook size={18} />
+                    </a>
+                    <a href={whatsappLink} className="btn btn-outline-success btn-sm rounded-circle">
+                        <MessageCircle size={18} />
+                    </a>
+                    <a href={linkedinLink} className="btn btn-outline-info btn-sm rounded-circle">
+                        <Linkedin size={18} />
+                    </a>
                 </div>
             </div>
         </div>
