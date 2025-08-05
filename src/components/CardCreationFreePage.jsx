@@ -21,8 +21,10 @@ const navigate=useNavigate();
   });
 
  const [cardGenerated, setCardGenerated] = useState(false);
+const userId =Number(localStorage.getItem("userId"));
+console.log("User ID:", userId);
 
-  
+   
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -55,8 +57,8 @@ const navigate=useNavigate();
         // If the card is generated, display the DigitalCardDisplay component
  
  try {
-      const response = await axios.post('http://localhost:8080/api/cards/insertDetail', {
-        name: formData.name,
+    const response = await axios.post(`http://localhost:8080/api/cards/insertDetail?userId=${userId}`, {
+     name: formData.name,
       title:formData.title, // This will be used for a tagline or secondary title if desired
     phone: formData.phone,
     email: formData.email, // Not used in the current card design, but kept for data collection

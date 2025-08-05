@@ -2,19 +2,12 @@ import React, { useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './cssfile/DigitalCardDisplay.css';
 import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
-const DigitalCardDisplay = ({ formData }) => {
+const DigitalCardDisplay = ({ formData, userId }) => {
   const cardRef = useRef(); // reference to the card
 
-  const { name, title, phone, email, address, website, instagram, whatsapp,facebook, avatar, about } = formData;
-console.log(whatsapp);
-  const renderIfPresent = (content, prefix = '', suffix = '') => {
-    return content ? (
-      <p className="mb-0 card-content-item">
-        {prefix}{content}{suffix}
-      </p>
-    ) : null;
-  };
+  const { name, title, phone, email, address, website, instagram, whatsapp, facebook, avatar, about } = formData;
 
   const renderLinkIfPresent = (url, text, iconClass) => {
     if (!url) return null;
@@ -28,8 +21,8 @@ console.log(whatsapp);
     );
   };
 
-  // ✅ Download Card Function
-  const downloadCard = async () => {
+  // ✅ Download as Image
+  const downloadCardAsImage = async () => {
     const canvas = await html2canvas(cardRef.current);
     const link = document.createElement('a');
     link.download = 'digital_card.png';
@@ -37,10 +30,27 @@ console.log(whatsapp);
     link.click();
   };
 
+  // ✅ Download as PDF
+  const downloadCardAsPDF = async () => {
+    const canvas = await html2canvas(cardRef.current);
+    const imgData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF({
+      orientation: 'portrait',
+      unit: 'px',
+      format: [canvas.width, canvas.height]
+    });
+    pdf.addImage(imgData, 'PNG', 0, 0);
+    pdf.save('digital_card.pdf');
+  };
+
+  // ✅ Download as Website (.html)
+  const downloadCardAsWebsite = () => {
+    window.open(`http://localhost:8080/api/export/card/html/${userId}`, '_blank');
+  };
+
   // ✅ Share Card Function
   const shareCard = () => {
     const shareUrl = window.location.href;
-
     if (navigator.share) {
       navigator.share({
         title: 'My Digital Card',
@@ -71,7 +81,6 @@ console.log(whatsapp);
               </a>
             </p>
           )}
-
           {address && (
             <p className="mb-1 text-left">
               <a
@@ -89,9 +98,9 @@ console.log(whatsapp);
         <div className="card-social-icons-display mb-4">
           {renderLinkIfPresent(website, 'Website', 'bi-globe fs-3')}
           {renderLinkIfPresent(instagram, 'Instagram', 'bi-instagram fs-3')}
-          {renderLinkIfPresent(facebook, 'facebook', 'bi-facebook fs-3')}
-          {renderLinkIfPresent('https://wa.me/91'+whatsapp, 'whatsapp', 'bi-whatsapp fs-3')}
-         </div>
+          {renderLinkIfPresent(facebook, 'Facebook', 'bi-facebook fs-3')}
+          {renderLinkIfPresent('https://wa.me/91' + whatsapp, 'WhatsApp', 'bi-whatsapp fs-3')}
+        </div>
 
         <div className="text-center mb-3">
           <img
@@ -105,7 +114,37 @@ console.log(whatsapp);
           <p className="card-scan-text-display">Scan for more details</p>
         </div>
       </div>
-    </div>
+
+    <div className="floating-icon-bar">
+  <i
+    className="bi bi-image text-primary"
+    title="Download as Image"
+    role="button"
+    onClick={downloadCardAsImage}
+  ></i>
+
+  <i
+    className="bi bi-file-earmark-pdf text-danger"
+    title="Download as PDF"
+    role="button"
+    onClick={downloadCardAsPDF}
+  ></i>
+
+  <i
+    className="bi bi-code-slash text-success"
+    title="Download as Website"
+    role="button"
+    onClick={downloadCardAsWebsite}
+  ></i>
+
+  <i
+    className="bi bi-share-fill text-secondary"
+    title="Share"
+    role="button"
+    onClick={shareCard}
+  ></i>
+</div>
+ </div>
   );
 };
 

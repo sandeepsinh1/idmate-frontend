@@ -112,3 +112,25 @@
 .card-content-item:empty {
   display: none; /* Hide paragraphs if they are empty after rendering */
 }
+.floating-icon-bar {
+  position: fixed;
+  bottom: 20px; /* change to `top: 20px` if you prefer top */
+  right: 20px;
+  background: white;
+  padding: 10px 15px;
+  border-radius: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  display: flex;
+  gap: 16px;
+  font-size: 1.5rem;
+}
+
+.floating-icon-bar i[role="button"] {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.floating-icon-bar i[role="button"]:hover {
+  transform: scale(1.25);
+}
