@@ -1,70 +1,90 @@
-import React from 'react';
-import { Phone, Globe, MapPin, Twitter, Facebook, MessageCircle, Linkedin } from 'lucide-react';
+import React from "react";
+import { Phone, Globe, Mail } from "lucide-react";
 
 const CardTemplate2 = ({
-    companyName = "GENADIN REAL ESTATE",
-    logoSrc = "https://placehold.co/50x50/FF7F50/FFFFFF?text=Logo",
-    fullName = "MICHAEL SMITH",
-    title = "Creative Director",
-    phone = "+012 078 5688",
-    website = "www.website.com",
-    address = "Street View Address, 012 North York, NY",
-    twitterLink = "#", facebookLink = "#", whatsappLink = "#", linkedinLink = "#",
-    preview = false // NEW
+  fullName = "FULL NAME",
+  title = "CEO & Founder",
+  phone = "415-999-9999",
+  email = "john@email.com",
+  website = "website.com",
+  logoText = "Logo Text Here",
+  preview = false,
 }) => {
-    return (
-        <div
-            className={`${preview ? '' : 'd-flex justify-content-center align-items-center'} container`}
+  return (
+    <div
+      className={`${
+        preview ? "" : "d-flex justify-content-center align-items-center"
+      } container`}
+      style={{
+        height: preview ? "auto" : "100vh",
+        backgroundColor: preview ? "transparent" : "#111",
+      }}
+    >
+      <div
+        className="card shadow-lg border-0"
+        style={{
+          width: preview ? "100%" : "32rem",
+          maxWidth: "36rem",
+          background: "#000",
+          color: "#fff",
+          padding: "2rem 2.5rem",
+          borderRadius: "0.5rem",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        {/* LEFT SECTION */}
+        <div style={{ flex: 1 }}>
+          <h2
             style={{
-                height: preview ? 'auto' : '100vh',
-                backgroundColor: preview ? 'transparent' : '#141111ff'
+              fontWeight: "900",
+              fontSize: "1.8rem",
+              marginBottom: "0.3rem",
             }}
-        >
-            <div className="card shadow-sm rounded-5 border-0 p-4"
-                style={{
-                    width: preview ? '100%' : '22rem',
-                    maxWidth: '22rem',
-                    background: 'green',
-                    position: 'relative',
-                    zIndex: 1
-                }}
-            >
-                <div className="text-center mb-3">
-                    <img src={logoSrc} alt="Logo" className="rounded mb-2" style={{ width: 50, height: 50 }} />
-                    <h6 className="text-muted mb-2" style={{ fontSize: '0.85rem', fontWeight: 500 }}>{companyName}</h6>
-                    <h4 className="fw-bold mb-1" style={{ fontSize: '1.5rem' }}>{fullName}</h4>
-                    <p className="text-secondary" style={{ fontSize: '0.95rem' }}>{title}</p>
-                </div>
+          >
+            {fullName}
+          </h2>
+          <p
+            style={{
+              fontSize: "1.1rem",
+              color: "#ddd",
+              marginBottom: "1.5rem",
+            }}
+          >
+            {title}
+          </p>
 
-                <ul className="list-unstyled ps-0 mb-4" style={{ fontSize: '0.9rem' }}>
-                    <li className="d-flex align-items-center mb-2">
-                        <Phone size={18} className="me-2 text-secondary" /> {phone}
-                    </li>
-                    <li className="d-flex align-items-center mb-2">
-                        <Globe size={18} className="me-2 text-secondary" /> {website}
-                    </li>
-                    <li className="d-flex align-items-center">
-                        <MapPin size={18} className="me-2 text-secondary" /> {address}
-                    </li>
-                </ul>
-
-                <div className="d-flex justify-content-center gap-3">
-                    <a href={twitterLink} className="btn btn-outline-primary btn-sm rounded-circle">
-                        <Twitter size={18} />
-                    </a>
-                    <a href={facebookLink} className="btn btn-outline-primary btn-sm rounded-circle">
-                        <Facebook size={18} />
-                    </a>
-                    <a href={whatsappLink} className="btn btn-outline-success btn-sm rounded-circle">
-                        <MessageCircle size={18} />
-                    </a>
-                    <a href={linkedinLink} className="btn btn-outline-info btn-sm rounded-circle">
-                        <Linkedin size={18} />
-                    </a>
-                </div>
-            </div>
+          <ul className="list-unstyled" style={{ fontSize: "0.95rem" }}>
+            <li className="d-flex align-items-center mb-2">
+              <Phone size={18} className="me-2 text-white" /> {phone}
+            </li>
+            <li className="d-flex align-items-center mb-2">
+              <Mail size={18} className="me-2 text-white" /> {email}
+            </li>
+            <li className="d-flex align-items-center">
+              <Globe size={18} className="me-2 text-white" /> {website}
+            </li>
+          </ul>
         </div>
-    );
+
+        {/* RIGHT SECTION (LOGO TEXT) */}
+        <div style={{ marginLeft: "2rem", textAlign: "right" }}>
+          <h4
+            style={{
+              fontFamily: "'Brush Script MT', cursive",
+              fontSize: "1.5rem",
+              fontStyle: "italic",
+              fontWeight: 500,
+              color: "#fff",
+            }}
+          >
+            {logoText}
+          </h4>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default CardTemplate2;

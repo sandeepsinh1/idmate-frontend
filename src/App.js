@@ -31,6 +31,8 @@ import CardTemplate5 from './cardoption/CardTemplate5';
 import CardTemplate6 from './cardoption/CardTemplate6';
 import CardTemplate7 from './cardoption/CardTemplate7';
 import CardTemplate8 from './cardoption/CardTemplate8';
+
+
 function AppWrapper()
 {
 const location =useLocation();
@@ -65,6 +67,9 @@ const location =useLocation();
         <Route path="/CardCreationPaidPage" element={<CardCreationPaidPage/>}/>
         <Route path="/CardViewPage" element={<CardViewPage/>}/>
         <Route path="/FirstPage" element={<FirstPage/>}/>
+
+
+
 
         </Routes>
   

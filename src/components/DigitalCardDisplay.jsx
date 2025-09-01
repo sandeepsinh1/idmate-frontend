@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './cssfile/DigitalCardDisplay.css';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import html2pdf from 'html2pdf.js';
 
 const DigitalCardDisplay = ({ formData, userId }) => {
   const cardRef = useRef(); // reference to the card
@@ -23,32 +24,46 @@ const DigitalCardDisplay = ({ formData, userId }) => {
 
   // ✅ Download as Image
   const downloadCardAsImage = async () => {
-    const canvas = await html2canvas(cardRef.current);
+    const canvas = await html2canvas(cardRef.current, {
+      scale: 2,
+      useCORS: true,
+    });
     const link = document.createElement('a');
     link.download = 'digital_card.png';
     link.href = canvas.toDataURL('image/png');
     link.click();
   };
 
-  // ✅ Download as PDF
-  const downloadCardAsPDF = async () => {
-    const canvas = await html2canvas(cardRef.current);
-    const imgData = canvas.toDataURL('image/png');
-    const pdf = new jsPDF({
-      orientation: 'portrait',
+  // ✅ Download as PDF (Improved Quality)
+const downloadCardAsPDF = () => {
+  const element = cardRef.current;
+
+  const elementWidth = element.offsetWidth;
+  const elementHeight = element.offsetHeight;
+
+  const opt = {
+    margin: 0,
+    filename: 'digital_card.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: {
       unit: 'px',
-      format: [canvas.width, canvas.height]
-    });
-    pdf.addImage(imgData, 'PNG', 0, 0);
-    pdf.save('digital_card.pdf');
+      format: [elementWidth, elementHeight],
+      orientation: 'portrait',
+    },
+    pagebreak: { mode: ['avoid-all'] }  // 🛑 Avoid extra pages
   };
 
+  html2pdf().set(opt).from(element).save();
+};
+
+ 
   // ✅ Download as Website (.html)
   const downloadCardAsWebsite = () => {
     window.open(`http://localhost:8080/api/export/card/html/${userId}`, '_blank');
   };
 
-  // ✅ Share Card Function
+  // ✅ Share Card
   const shareCard = () => {
     const shareUrl = window.location.href;
     if (navigator.share) {
@@ -63,8 +78,12 @@ const DigitalCardDisplay = ({ formData, userId }) => {
   };
 
   return (
-    <div className="card-background-container-display" style={{ paddingTop: '20rem' }}>
-      <div className="card-custom-display shadow-lg p-4" ref={cardRef}>
+    <div className="card-background-container-display " style={{ paddingTop: '0rem' }}>
+      <div
+        className="card-custom-display shadow-lg p-4"
+        ref={cardRef}
+        style={{ backgroundColor: '#fffbe6', borderRadius: '20px' }}
+      >
         <div className="text-center mb-4">
           {name && <h1 className="card-title-display">{name}</h1>}
         </div>
@@ -115,36 +134,37 @@ const DigitalCardDisplay = ({ formData, userId }) => {
         </div>
       </div>
 
-    <div className="floating-icon-bar">
-  <i
-    className="bi bi-image text-primary"
-    title="Download as Image"
-    role="button"
-    onClick={downloadCardAsImage}
-  ></i>
+      {/* Floating Icon Bar */}
+      <div className="floating-icon-bar">
+        <i
+          className="bi bi-image text-primary"
+          title="Download as Image"
+          role="button"
+          onClick={downloadCardAsImage}
+        ></i>
 
-  <i
-    className="bi bi-file-earmark-pdf text-danger"
-    title="Download as PDF"
-    role="button"
-    onClick={downloadCardAsPDF}
-  ></i>
+        <i
+          className="bi bi-file-earmark-pdf text-danger"
+          title="Download as PDF"
+          role="button"
+          onClick={downloadCardAsPDF}
+        ></i>
 
-  <i
-    className="bi bi-code-slash text-success"
-    title="Download as Website"
-    role="button"
-    onClick={downloadCardAsWebsite}
-  ></i>
+        <i
+          className="bi bi-code-slash text-success"
+          title="Download as Website"
+          role="button"
+          onClick={downloadCardAsWebsite}
+        ></i>
 
-  <i
-    className="bi bi-share-fill text-secondary"
-    title="Share"
-    role="button"
-    onClick={shareCard}
-  ></i>
-</div>
- </div>
+        <i
+          className="bi bi-share-fill text-secondary"
+          title="Share"
+          role="button"
+          onClick={shareCard}
+        ></i>
+      </div>
+    </div>
   );
 };
 

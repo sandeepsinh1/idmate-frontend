@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import { jwtDecode } from "jwt-decode"; // ✅ Correct
+import { jwtDecode } from "jwt-decode";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -11,24 +11,34 @@ const LoginPage = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // Optional: If already logged in, redirect to FirstPage
   useEffect(() => {
     const token = localStorage.getItem("jwtToken");
     if (token) {
-      navigate("/FirstPage");
+      try {
+        const decoded = jwtDecode(token);
+        const currentTime = Date.now() / 1000;
+        if (decoded.exp && decoded.exp > currentTime) {
+          navigate("/FirstPage");
+        } else {
+          localStorage.removeItem("jwtToken");
+          localStorage.removeItem("userId");
+        }
+      } catch (err) {
+        console.error("Invalid token:", err);
+        localStorage.removeItem("jwtToken");
+        localStorage.removeItem("userId");
+      }
     }
   }, [navigate]);
 
-  // Input change handler
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
-    setError(''); // Clear previous error
+    setError('');
   };
 
-  // Form submit handler
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -43,18 +53,10 @@ const LoginPage = () => {
       const decoded = jwtDecode(token);
 
       if (response.status === 200 && token) {
-        // Store token in localStorage
         const userId = decoded.userId || decoded.id || decoded.sub;
-
         localStorage.setItem("jwtToken", token);
         localStorage.setItem("userId", userId);
-        
 
-          // ✅ Decode token to extract userId
-
-
-        // Optional: You may also save user info from token if returned
-        // Redirect to FirstPage
         alert("Login successful!");
         navigate('/FirstPage');
       } else {
@@ -73,8 +75,16 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
-      <div className="card shadow-lg p-4" style={{ width: "22rem", borderRadius: "15px" }}>
+    <div className="d-flex justify-content-center align-items-center vh-100" style={{
+      background: 'linear-gradient(135deg,#0f2027, #203a43, #2c5364)'
+    }}>
+      <div className="card shadow-lg p-4" style={{
+        width: "22rem",
+        borderRadius: "15px",
+        backgroundColor: "#203a43,",
+        border: "none"
+      }}>
+
         <div className="text-center mb-3">
           <img
             src="https://via.placeholder.com/60"
@@ -82,12 +92,12 @@ const LoginPage = () => {
             className="mb-2"
             style={{ width: "60px" }}
           />
-          <h2>IDMate</h2>
-          <p className="text-muted">Your Digital Identity, Simplified</p>
+          <h2 style={{ color: "#00bfff" }}>IDMate</h2>
+          <p className="text-muted" style={{ color: "#a0a0a0" }}>Your Digital Identity, Simplified</p>
         </div>
 
         <form onSubmit={handleLogin}>
-          <h4 className="text-center mb-3">Login to Your Account</h4>
+          <h4 className="text-center mb-3 text-dark">Login to Your Account</h4>
 
           {error && (
             <div className="alert alert-danger text-center py-1">{error}</div>
@@ -121,8 +131,8 @@ const LoginPage = () => {
             {loading ? "Logging in..." : "Login"}
           </button>
 
-          <p className="text-center mt-3">
-            Don't have an account? <a href="/RegisterPage">Register here</a>
+          <p className="text-center mt-3 text-secondary">
+            Don't have an account? <a href="/RegisterPage" className="text-primary fw-semibold">Register here</a>
           </p>
         </form>
       </div>
