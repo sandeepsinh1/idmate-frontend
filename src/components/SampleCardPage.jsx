@@ -2,7 +2,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './cssfile/SampleCardPage.css';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 const cardData = Array.from({ length: 50 }, (_, i) => {
   if (i < 20) return { type: 'shop', id: i + 1 };
   if (i < 35) return { type: 'employee', id: i + 1 };
@@ -10,44 +11,44 @@ const cardData = Array.from({ length: 50 }, (_, i) => {
 });
 
 const SampleCardPage = () => {
-  const bgColors = ['#fff8e1', '#f3e5f5', '#e3f2fd', '#f1f8e9', '#fff3e0'];
+  const bgColors = ['#1e293b', '#334155', '#0f172a', '#1e3a8a', '#0c4a6e'];
   const employeeImg = "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=600&q=80";
 
   return (
-    <div container-fluid bg-light sticky-top shadow-sm style={{ paddingTop: '364rem' }}>
- <div className="d-flex justify-content-between align-items-center px-4 py-2">
-        
+    <div style={{ backgroundColor: '#0f172a', minHeight: '100vh', paddingTop: '0rem' }}>
+      {/* Navbar */}
+      <div className="d-flex justify-content-between align-items-center px-4 py-3 bg-dark shadow-sm">
         <div>
-          <span className="h5 fw-bold text-warning me-2">Idmate</span>
-          <span className="text-primary small">Say Hello with a Tap.</span>
+          <span className="h5 fw-bold text-info me-2">Idmate</span>
+          <span className="text-light small">Say Hello with a Tap.</span>
         </div>
 
         <div className="d-flex gap-2">
           <Link to="/">
-            <button className="btn btn-outline-primary">Home</button>
+            <button className="btn btn-outline-light">Home</button>
           </Link>
           <Link to="/RegisterPage">
-            <button className="btn btn-outline-primary">Go to Registration</button>
+            <button className="btn btn-outline-light">Register</button>
           </Link>
           <Link to="/FeaturesPage">
-            <button className="btn btn-outline-primary">Features</button>
+            <button className="btn btn-outline-light">Features</button>
           </Link>
           <Link to="/PricingPage">
-            <button className="btn btn-outline-primary">Pricing</button>
+            <button className="btn btn-outline-light">Pricing</button>
           </Link>
           <Link to="/AboutPage">
-            <button className="btn btn-outline-primary">About Us</button>
+            <button className="btn btn-outline-light">About Us</button>
           </Link>
         </div>
-
       </div>
-    
-      <h2 className="text-center mb-4 fw-bold text-info">50 Attractive Sample Cards</h2>
-      <h3 className="text-center mb-4 fw-bold text-info">This is Sample Cards It is static Generated Card </h3>
-      <h4 className="text-center mb-4 fw-bold text-info">We have lots of Variety Availible that look Great </h4>
-      
-      
-      <div className="row g-4">
+
+      {/* Headings */}
+      <h2 className="text-center mb-2 fw-bold text-info mt-4">50 Attractive Sample Cards</h2>
+      <h3 className="text-center mb-2 fw-semibold text-light">These are Static Generated Cards</h3>
+      <h4 className="text-center mb-4 fw-semibold text-secondary">We have many varieties that look great!</h4>
+
+      {/* Card Grid */}
+      <div className="row g-4 px-3 pb-5">
         {cardData.map((card, index) => {
           const isShop = card.type === 'shop';
           const isEmp = card.type === 'employee';
@@ -68,15 +69,16 @@ const SampleCardPage = () => {
                       : bgColors[index % bgColors.length],
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
+                  border: '1px solid #334155',
                 }}
               >
                 {(isShop || isEmp) && <div className="card-overlay" />}
-                <div className={`position-relative ${isShop || isEmp ? 'text-white' : 'text-dark'}`}>
-                  <i className="bi bi-person-badge-fill fs-1 text-primary"></i>
+                <div className={`position-relative ${isShop || isEmp ? 'text-white' : 'text-light'}`}>
+                  <i className="bi bi-person-badge-fill fs-1 text-warning"></i>
                   <h5 className="mt-2 fw-bold text-uppercase">Card {card.id}</h5>
-                  <p className="small mb-1">Men's Wear | Women's Wear | Kids</p>
+                  <p className="small mb-1 text-info">Men's Wear | Women's Wear | Kids</p>
                   <p>
-                    <i className="bi bi-telephone-fill me-2 text-danger"></i>07610{300000 + index}
+                    <i className="bi bi-telephone-fill me-2 text-success"></i>07610{300000 + index}
                   </p>
                   <p>
                     <i className="bi bi-geo-alt-fill me-2 text-danger"></i>Some City, Zone {index % 10}

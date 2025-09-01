@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
+
 const AboutPage = () => {
   const [showMore, setShowMore] = useState([false, false, false]);
 
@@ -16,23 +17,32 @@ const AboutPage = () => {
   ];
 
   return (
-    <div style={{ paddingTop: '15rem' }}>
+    <div style={{ paddingTop: '0rem', background: 'linear-gradient(to right, #0f172a, #1e293b)', color: '#f1f5f9' }}>
       <div className="container-fluid p-0">
 
         {/* Hero Section */}
-        <div className="bg-white text-primary d-flex align-items-center justify-content-center" style={{ height: '100vh', position: 'relative' }}>
-          <div className="bg-opacity-75 bg-white p-5 text-center w-100">
-            <h1 className="display-4 fw-bold ">
+        <div
+          className="d-flex align-items-center justify-content-center"
+          style={{
+            height: '100%',
+            position: 'relative',
+            background: 'linear-gradient(to right, #1e293b, #0f172a)',
+          }}
+        >
+          <div className="p-5 text-center w-100">
+            <h1 className="display-4 fw-bold text-light">
               Together we can make a <span className="text-warning">Difference</span>
             </h1>
-            <p className="lead my-4">
+            <p className="lead my-4 text-light">
               Build your digital presence now. A modern solution to create, share, and manage visiting cards online.
             </p>
             <div className="d-flex justify-content-center gap-3">
-            <Link to="/">
-              <button className="btn btn-warning fw-bold px-4"> Home </button>
+              <Link to="/">
+                <button className="btn btn-warning fw-bold px-4">Home</button>
               </Link>
-              <button className="btn btn-outline-light fw-bold px-4">Learn More</button>
+              <button className="btn btn-outline-info fw-bold px-4 text-light border-info">
+                Learn More
+              </button>
             </div>
           </div>
         </div>
@@ -41,7 +51,6 @@ const AboutPage = () => {
         <div className="container py-5" style={{ marginTop: '-4rem', zIndex: 1, position: 'relative' }}>
           <div className="row g-4 justify-content-center">
 
-            {/* Feature Cards */}
             {[
               {
                 title: "Fully Customizable",
@@ -57,10 +66,13 @@ const AboutPage = () => {
               },
             ].map((card, index) => (
               <div className="col-md-4" key={index}>
-                <div className="card h-100 text-center shadow-sm border-0">
+                <div
+                  className="card h-100 text-center shadow border-0"
+                  style={{ backgroundColor: '#1e293b', color: '#f8fafc' }}
+                >
                   <div className="card-body">
-                    <img src="" alt={card.title} className="mb-3" width="50" />
-                    <h5 className="card-title">{card.title}</h5>
+                    {/* Optional icon/image can be added here */}
+                    <h5 className="card-title text-info">{card.title}</h5>
                     <p className="card-text">{card.description}</p>
 
                     {showMore[index] && (
@@ -68,7 +80,7 @@ const AboutPage = () => {
                     )}
 
                     <button
-                      className="btn btn-link text-primary fw-semibold"
+                      className="btn btn-link text-info fw-semibold"
                       onClick={() => toggleReadMore(index)}
                     >
                       {showMore[index] ? "Show Less" : "Read More"}

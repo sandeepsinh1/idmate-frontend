@@ -147,44 +147,62 @@ const CardSelectionPage = ({ formData }) => {
     };
 
     return (
-        <div className="container py-5" style={{ marginTop: '35rem' }}>
-            <h2 className="text-center mb-5 fw-bold">✨ Select a Card Design</h2>
+       <div className="container py-5" style={{ marginTop: '0rem', backgroundColor: '#1e1e2f', minHeight: '100%' }}>
+  <h2 className="text-center mb-5 fw-bold" style={{ color: '#0d6efd' }}>
+    ✨ Select a Card Design
+  </h2>
 
-           <div className="scroll-container d-flex overflow-auto px-3 py-4 gap-4">
-  {templates.map(({ id, name, component: TemplateComponent, props: templateProps }) => (
-    <div
-      key={id}
-      className="card shadow-lg rounded-4 text-center p-3 border-2 bg-white flex-shrink-0"
-      style={{ width: '250px', minWidth: '250px' }}
-    >
-      <h6 className="mb-3 fw-semibold">{name}</h6>
-      <div className="preview-frame mb-3">
-        <div className="preview-inner scale-down">
-          <TemplateComponent {...templateProps} />
-        </div>
-      </div>
-      <button
-        className={`btn w-100 ${selectedTemplate === id ? 'btn-success' : 'btn-outline-primary'}`}
-        onClick={() => handleSelect(id)}
+  <div className="scroll-container d-flex overflow-auto px-3 py-4 gap-4">
+    {templates.map(({ id, name, component: TemplateComponent, props: templateProps }) => (
+      <div
+        key={id}
+        className="card text-center p-3 border-0 flex-shrink-0 shadow rounded-4"
+        style={{
+          backgroundColor: selectedTemplate === id ? '#0d6efd' : '#2a2a3d',
+          color: selectedTemplate === id ? '#fff' : '#ccc',
+          width: '250px',
+          minWidth: '250px',
+          transition: '0.3s ease',
+          boxShadow: selectedTemplate === id ? '0 0 10px 3px rgba(13,110,253,0.7)' : '0 2px 8px rgba(0,0,0,0.5)',
+          border: selectedTemplate === id ? '2px solid #0d6efd' : '1px solid transparent',
+          cursor: 'pointer',
+        }}
       >
-        {selectedTemplate === id ? '✔ Selected' : 'Select This'}
-      </button>
+        <h6 className="mb-3 fw-semibold">
+          {name}
+        </h6>
+        <div className="preview-frame mb-3">
+          <div className="preview-inner scale-down">
+            <TemplateComponent {...templateProps} />
+          </div>
+        </div>
+        <button
+          className={`btn w-100 fw-semibold ${selectedTemplate === id ? 'btn-light text-dark' : 'btn-outline-info'}`}
+          onClick={() => handleSelect(id)}
+        >
+          {selectedTemplate === id ? '✔ Selected' : 'Select This'}
+        </button>
+      </div>
+    ))}
+  </div>
+
+  {selectedTemplate && (
+    <div
+      className="mt-5 p-4 rounded shadow text-center"
+      style={{ backgroundColor: '#2a2a3d', color: '#fff', border: '1px solid #0d6efd' }}
+    >
+      <h4 className="mb-4" style={{ color: '#0d6efd' }}>
+        🎉 Your Selected Card
+      </h4>
+
+      {React.createElement(
+        templates.find(t => t.id === selectedTemplate).component,
+        userData
+      )}
     </div>
-  ))}
+  )}
 </div>
 
-            {selectedTemplate && (
-                <div className="mt-5 p-4 bg-light border rounded shadow-sm text-center">
-                    <h4 className="mb-4">🎉 Your Selected Card</h4>
-                   
-                    {React.createElement(
-  templates.find(t => t.id === selectedTemplate).component,
-  userData
-)}
-
-                </div>
-            )}
-        </div>
     );
 };
 

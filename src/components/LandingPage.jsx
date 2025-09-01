@@ -5,14 +5,14 @@ const LandingPage = () => {
   return (
     <div className="d-flex flex-column min-vh-100 bg-dark text-light">
       {/* Main Content */}
-      <main style={{ paddingTop: "50rem" }}>
+      <main style={{ paddingTop: "0rem" }}>
         {/* Hero Section */}
         <section
-          className="text-center py-5 px-0"
+          className="text-center py-0 px-0"
           style={{
             background: "linear-gradient(to right, #0f172a, #1e293b)",
-            width: "100vw", // ✅ Ensure full width
-            margin: 0, // ✅ Remove margin
+            width: "100%", // ✅ Ensure full width
+           
           }}
         >
           <div className="w-100"> {/* ✅ Replace container-fluid */}
