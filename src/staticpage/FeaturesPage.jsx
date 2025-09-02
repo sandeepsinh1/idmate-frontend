@@ -68,6 +68,7 @@ const FeaturesPage = () => {
           <button className="btn btn-outline-info text-light">About Us</button>
         </Link>
       </div>
+      
     </div>
 
     {/* MAIN CONTENT */}

@@ -81,29 +81,43 @@ const LoginPage = () => {
       <div className="card shadow-lg p-4" style={{
         width: "22rem",
         borderRadius: "15px",
-        backgroundColor: "#203a43,",
-        border: "none"
+    background: '#1e1e2f',
+      padding: '40px',
+      boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
+      width: '100%',
+      maxWidth: '400px',
+      textAlign: 'center',
+      color: '#e0e0e0',
+       border: "none"
       }}>
 
-        <div className="text-center mb-3">
-          <img
-            src="https://via.placeholder.com/60"
-            alt="App Logo"
-            className="mb-2"
-            style={{ width: "60px" }}
-          />
+        <div className="text-center mb-3 " >
           <h2 style={{ color: "#00bfff" }}>IDMate</h2>
-          <p className="text-muted" style={{ color: "#a0a0a0" }}>Your Digital Identity, Simplified</p>
+          <p className="text-center mt-3 text-secondary" style={ { marginTop: '10px',
+      fontSize: '14px',
+      color: '#ccc',
+   }}>Your Digital Identity, Simplified</p>
         </div>
 
         <form onSubmit={handleLogin}>
-          <h4 className="text-center mb-3 text-dark">Login to Your Account</h4>
+          <h4 className="text-center mt-0 text-secondary" style={ { marginTop: '10px',
+      fontSize: '30px',
+      color: '#ccc',
+   }}>Login to Your Account</h4>
 
           {error && (
             <div className="alert alert-danger text-center py-1">{error}</div>
           )}
 
-          <div className="mb-3">
+          <div className="mb-3" style={{  padding: '12px',
+      fontSize: '16px',
+      border: '1px solid #444',
+      borderRadius: '8px',
+      outline: 'none',
+      backgroundColor: '#2a2a3b',
+      color: '#fff',
+      transition: '0.3s',
+     }}>
             <input
               type="email"
               name="email"
@@ -115,7 +129,15 @@ const LoginPage = () => {
             />
           </div>
 
-          <div className="mb-3">
+          <div className="mb-3"  style={{  padding: '12px',
+      fontSize: '16px',
+      border: '1px solid #444',
+      borderRadius: '8px',
+      outline: 'none',
+      backgroundColor: '#2a2a3b',
+      color: '#fff',
+      transition: '0.3s',
+     }}>
             <input
               type="password"
               name="password"
@@ -131,7 +153,10 @@ const LoginPage = () => {
             {loading ? "Logging in..." : "Login"}
           </button>
 
-          <p className="text-center mt-3 text-secondary">
+          <p className="text-center mt-3 text-secondary" style={ { marginTop: '10px',
+      fontSize: '14px',
+      color: '#ccc',
+   }}>
             Don't have an account? <a href="/RegisterPage" className="text-primary fw-semibold">Register here</a>
           </p>
         </form>

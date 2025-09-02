@@ -12,35 +12,56 @@ const cardData = Array.from({ length: 50 }, (_, i) => {
 
 const SampleCardPage = () => {
   const bgColors = ['#1e293b', '#334155', '#0f172a', '#1e3a8a', '#0c4a6e'];
-  const employeeImg = "https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=600&q=80";
+  const employeeImg =
+    'https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=600&q=80';
 
   return (
-    <div style={{ backgroundColor: '#0f172a', minHeight: '100vh', paddingTop: '0rem' }}>
+    <div style={{ backgroundColor: '#0f172a', minHeight: '100%', paddingTop: '0rem' }}>
       {/* Navbar */}
-      <div className="d-flex justify-content-between align-items-center px-4 py-3 bg-dark shadow-sm">
-        <div>
-          <span className="h5 fw-bold text-info me-2">Idmate</span>
-          <span className="text-light small">Say Hello with a Tap.</span>
-        </div>
+      <nav
+        className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm sticky-top"
+        style={{ borderBottom: '1px solid #1e293b' }}
+      >
+        <div className="container-fluid">
+          <Link className="navbar-brand text-info fw-bold" to="/">
+            Idmate <span className="text-light small">Say Hello with a Tap.</span>
+          </Link>
 
-        <div className="d-flex gap-2">
-          <Link to="/">
-            <button className="btn btn-outline-light">Home</button>
-          </Link>
-          <Link to="/RegisterPage">
-            <button className="btn btn-outline-light">Register</button>
-          </Link>
-          <Link to="/FeaturesPage">
-            <button className="btn btn-outline-light">Features</button>
-          </Link>
-          <Link to="/PricingPage">
-            <button className="btn btn-outline-light">Pricing</button>
-          </Link>
-          <Link to="/AboutPage">
-            <button className="btn btn-outline-light">About Us</button>
-          </Link>
+          {/* Hamburger */}
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          {/* Nav Links */}
+          <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link className="nav-link" to="/">Home</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/RegisterPage">Register</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/FeaturesPage">Features</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/PricingPage">Pricing</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/AboutPage">About Us</Link>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
+      </nav>
 
       {/* Headings */}
       <h2 className="text-center mb-2 fw-bold text-info mt-4">50 Attractive Sample Cards</h2>
@@ -52,10 +73,9 @@ const SampleCardPage = () => {
         {cardData.map((card, index) => {
           const isShop = card.type === 'shop';
           const isEmp = card.type === 'employee';
-          const isBasic = card.type === 'basic';
 
           return (
-            <div className="col-md-6 col-lg-4 col-xl-3" key={index}>
+            <div className="col-12 col-sm-6 col-md-4 col-lg-3" key={index}>
               <div
                 className={`p-4 rounded-4 text-center position-relative shadow-sm ${
                   isShop || isEmp ? 'card-with-bg text-white' : ''

@@ -115,11 +115,7 @@ const RegisterPage = () => {
     <div style={styles.container}>
       <div style={styles.card}>
         <div className="branding">
-          <img
-            src="https://via.placeholder.com/60"
-            alt="App Logo"
-            style={styles.logo}
-          />
+          
           <h2 style={styles.title}>IDMate</h2>
           <p style={styles.tagline}>Create Your Digital Identity</p>
         </div>

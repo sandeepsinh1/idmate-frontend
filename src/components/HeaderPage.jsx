@@ -1,39 +1,57 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const HeaderPage = () => {
   return (
-    <div
-      className="container-fluid sticky-top shadow-sm"
+    <nav
+      className="navbar navbar-expand-lg sticky-top shadow-sm"
       style={{
         background: "linear-gradient(to right, #0f172a, #1e293b)",
         borderBottom: "1px solid #1e293b",
       }}
     >
-      <div className="d-flex justify-content-between align-items-center px-4 py-2">
-
+      <div className="container-fluid">
         {/* Brand */}
-        <div>
-          <span className="h5 fw-bold text-info me-2">Idmate</span>
-          <span className="text-light small">Say Hello with a Tap.</span>
-        </div>
+        <Link className="navbar-brand text-info fw-bold" to="/">
+          Idmate <span className="text-light small">Say Hello with a Tap.</span>
+        </Link>
 
-        {/* Nav Buttons */}
-        <div className="d-flex gap-2">
-          <Link to="/FeaturesPage">
-            <button className="btn btn-outline-info text-light">Features</button>
-          </Link>
-          <Link to="/PricingPage">
-            <button className="btn btn-outline-info text-light">Pricing</button>
-          </Link>
-          <Link to="/AboutPage">
-            <button className="btn btn-outline-info text-light">About Us</button>
-          </Link>
-        </div>
+        {/* Hamburger Button */}
+        <button
+          className="navbar-toggler text-light"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
+        {/* Nav Links */}
+        <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link className="nav-link text-light" to="/FeaturesPage">
+                Features
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link text-light" to="/PricingPage">
+                Pricing
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link text-light" to="/AboutPage">
+                About Us
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
+    </nav>
   );
 };
 
