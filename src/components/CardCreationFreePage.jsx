@@ -145,7 +145,8 @@ const CardCreationFreePage = () => {
           <div className="col-md-6">
             <div className="form-floating">
               <input type="tel" className="form-control bg-white text-dark" id="phone" name="phone"
-                value={formData.phone} onChange={handleChange} placeholder="Phone" />
+                value={formData.phone} onChange={handleChange} 
+                pattern="[0-9]{10}" maxLength="10"   placeholder="Phone" />
               <label htmlFor="phone">Phone Number</label>
             </div>
           </div>

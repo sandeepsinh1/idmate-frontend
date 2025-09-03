@@ -6,6 +6,7 @@
     border: 1px solid #dee2e6;
     border-radius: 12px;
     background-color: #f8f9fa;
+    box-sizing: border-box;
 }
 
 .preview-inner {
@@ -15,24 +16,43 @@
     width: 100%;
     height: 100%;
     transform-origin: top left;
+    overflow-wrap: break-word;  /* Ensure long text wraps */
+    word-break: break-word;
+    white-space: normal;
 }
 
 .scale-down {
     transform: scale(0.35);
     transform-origin: top center;
 }
+
 .scroll-container {
-  scroll-behavior: smooth;
-  overflow-x: auto;
-  display: flex;
-  flex-wrap: nowrap;
+    scroll-behavior: smooth;
+    overflow-x: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 10px 0;
+    gap: 20px; /* Adds space between items */
 }
 
 .scroll-container::-webkit-scrollbar {
-  height: 8px;
+    height: 8px;
 }
 
 .scroll-container::-webkit-scrollbar-thumb {
-  background: #bbb;
-  border-radius: 10px;
+    background: #bbb;
+    border-radius: 10px;
+}
+
+/* Additional: fix for card content inside preview */
+.preview-inner > * {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+
+/* Optional: smooth edges for scaled content */
+.scale-down {
+    will-change: transform;
+    backface-visibility: hidden;
 }

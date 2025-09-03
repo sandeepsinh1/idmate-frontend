@@ -1,70 +1,86 @@
 import React from 'react';
-import { Phone, Globe, MapPin, Twitter, Facebook, MessageCircle, Linkedin } from 'lucide-react';
+import { Phone, Mail, Globe } from 'lucide-react';
 
 const CardTemplate4 = ({
-    companyName = "GENADIN REAL ESTATE",
-    logoSrc = "https://placehold.co/50x50/FF7F50/FFFFFF?text=Logo",
-    fullName = "MICHAEL SMITH",
-    title = "Creative Director",
-    phone = "+012 078 5688",
-    website = "www.website.com",
-    address = "Street View Address, 012 North York, NY",
-    twitterLink = "#", facebookLink = "#", whatsappLink = "#", linkedinLink = "#",
-    preview = false // NEW
+  fullName = "FULL NAME",
+  title = "CEO & Founder",
+  phone = "415-999-9999",
+  email = "john@email.com",
+  website = "website.com",
+  logoText = "LOGO TEXT HERE",
+  slogan = "SLOGAN HERE",
+  logoIcon = "https://placehold.co/80x50?text=Logo", // Replace with real logo or SVG
+  preview = false,
 }) => {
-    return (
-        <div
-            className={`${preview ? '' : 'd-flex justify-content-center align-items-center'} container`}
-            style={{
-                height: preview ? 'auto' : '100vh',
-                backgroundColor: preview ? 'transparent' : '#141111ff'
-            }}
-        >
-            <div className="card shadow-sm rounded-5 border-0 p-4"
-                style={{
-                    width: preview ? '100%' : '22rem',
-                    maxWidth: '22rem',
-                    background: 'dark',
-                    position: 'relative',
-                    zIndex: 1
-                }}
-            >
-                <div className="text-center mb-3">
-                    <img src={logoSrc} alt="Logo" className="rounded mb-2" style={{ width: 50, height: 50 }} />
-                    <h6 className="text-muted mb-2" style={{ fontSize: '0.85rem', fontWeight: 500 }}>{companyName}</h6>
-                    <h4 className="fw-bold mb-1" style={{ fontSize: '1.5rem' }}>{fullName}</h4>
-                    <p className="text-secondary" style={{ fontSize: '0.95rem' }}>{title}</p>
-                </div>
+  // Helper to add https:// if missing
+  const formatWebsite = (url) => {
+    if (!url) return "";
+    return url.startsWith("http://") || url.startsWith("https://") ? url : `https://${url}`;
+  };
 
-                <ul className="list-unstyled ps-0 mb-4" style={{ fontSize: '0.9rem' }}>
-                    <li className="d-flex align-items-center mb-2">
-                        <Phone size={18} className="me-2 text-secondary" /> {phone}
-                    </li>
-                    <li className="d-flex align-items-center mb-2">
-                        <Globe size={18} className="me-2 text-secondary" /> {website}
-                    </li>
-                    <li className="d-flex align-items-center">
-                        <MapPin size={18} className="me-2 text-secondary" /> {address}
-                    </li>
-                </ul>
+  return (
+    <div
+      className={`${preview ? '' : 'd-flex justify-content-center align-items-center'} container`}
+      style={{
+        height: preview ? 'auto' : '100vh',
+        backgroundColor: preview ? 'transparent' : '#351e07ff',
+        fontFamily: "'Poppins', sans-serif",
+        color: '#000',
+        padding: preview ? 0 : '2rem',
+      }}
+    >
+      <div
+        className="card shadow border-0 d-flex flex-row justify-content-between align-items-center p-3"
+        style={{
+          width: '336px',
+          height: '192px',
+          backgroundColor: '#e1984d',
+          fontSize: '11px',
+          borderRadius: '8px',
+        }}
+      >
+        {/* Left Section */}
+        <div style={{ flex: 1, paddingRight: '10px' }}>
+          <div className="fw-bold" style={{ fontSize: '15px', marginBottom: '4px' }}>
+            {fullName}
+          </div>
+          <div style={{ marginBottom: '8px' }}>{title}</div>
 
-                <div className="d-flex justify-content-center gap-3">
-                    <a href={twitterLink} className="btn btn-outline-primary btn-sm rounded-circle">
-                        <Twitter size={18} />
-                    </a>
-                    <a href={facebookLink} className="btn btn-outline-primary btn-sm rounded-circle">
-                        <Facebook size={18} />
-                    </a>
-                    <a href={whatsappLink} className="btn btn-outline-success btn-sm rounded-circle">
-                        <MessageCircle size={18} />
-                    </a>
-                    <a href={linkedinLink} className="btn btn-outline-info btn-sm rounded-circle">
-                        <Linkedin size={18} />
-                    </a>
-                </div>
-            </div>
+          <div className="d-flex align-items-center mb-1">
+            <a href={`tel:${phone}`} style={{ color: '#000', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+              <Phone size={12} className="me-2" /> {phone}
+            </a>
+          </div>
+          <div className="d-flex align-items-center mb-1">
+            <a href={`mailto:${email}`} style={{ color: '#000', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+              <Mail size={12} className="me-2" /> {email}
+            </a>
+          </div>
+          <div className="d-flex align-items-center">
+           <a
+                         href={formatWebsite(website)}
+                         target="_blank"
+                         rel="noopener noreferrer"
+                         style={{ display: "flex", alignItems: "center", color: "#000", textDecoration: "none" }}
+                       >
+                         <Globe size={16} className="me-2" />
+                         {/* Website URL text hidden here */}
+                       </a></div>
         </div>
-    );
+
+        {/* Right Section */}
+        <div className="text-end" style={{ flex: 1 }}>
+          <img
+            src={logoIcon}
+            alt="Logo"
+            style={{ width: '80px', height: 'auto', marginBottom: '5px' }}
+          />
+          <div className="fw-bold" style={{ fontSize: '12px' }}>{logoText}</div>
+          <div style={{ fontSize: '10px' }}>{slogan}</div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default CardTemplate4;

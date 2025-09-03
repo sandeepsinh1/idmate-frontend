@@ -9,9 +9,18 @@ const CardTemplate3 = ({
     phone = "+012 078 5688",
     website = "www.website.com",
     address = "Street View Address, 012 North York, NY",
-    twitterLink = "#", facebookLink = "#", whatsappLink = "#", linkedinLink = "#",
-    preview = false // NEW
+    twitterLink = "#",
+    facebookLink = "#",
+    whatsappLink = "#",
+    linkedinLink = "#",
+    preview = false
 }) => {
+    // Helper to add https:// if missing
+    const formatWebsite = (url) => {
+        if (!url) return "";
+        return url.startsWith("http://") || url.startsWith("https://") ? url : `https://${url}`;
+    };
+
     return (
         <div
             className={`${preview ? '' : 'd-flex justify-content-center align-items-center'} container`}
@@ -38,27 +47,46 @@ const CardTemplate3 = ({
 
                 <ul className="list-unstyled ps-0 mb-4" style={{ fontSize: '0.9rem' }}>
                     <li className="d-flex align-items-center mb-2">
-                        <Phone size={18} className="me-2 text-secondary" /> {phone}
+                        <a
+                            href={`tel:${phone}`}
+                            style={{ color: '#6c757d', textDecoration: 'none', display: 'flex', alignItems: 'center' }}
+                        >
+                            <Phone size={18} className="me-2" /> {phone}
+                        </a>
                     </li>
                     <li className="d-flex align-items-center mb-2">
-                        <Globe size={18} className="me-2 text-secondary" /> {website}
-                    </li>
+                      <a
+                                    href={formatWebsite(website)}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    style={{ display: "flex", alignItems: "center", color: "#6c757d", textDecoration: "none" }}
+                                  >
+                                    <Globe size={16} className="me-2" />
+                                    {/* Website URL text hidden here */}
+                                  </a></li>
                     <li className="d-flex align-items-center">
-                        <MapPin size={18} className="me-2 text-secondary" /> {address}
+                        <a
+                            href={`https://maps.google.com/?q=${encodeURIComponent(address)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ color: '#6c757d', textDecoration: 'none', display: 'flex', alignItems: 'center' }}
+                        >
+                            <MapPin size={18} className="me-2" /> {address}
+                        </a>
                     </li>
                 </ul>
 
                 <div className="d-flex justify-content-center gap-3">
-                    <a href={twitterLink} className="btn btn-outline-primary btn-sm rounded-circle">
+                    <a href={twitterLink} className="btn btn-outline-primary btn-sm rounded-circle" target="_blank" rel="noopener noreferrer">
                         <Twitter size={18} />
                     </a>
-                    <a href={facebookLink} className="btn btn-outline-primary btn-sm rounded-circle">
+                    <a href={facebookLink} className="btn btn-outline-primary btn-sm rounded-circle" target="_blank" rel="noopener noreferrer">
                         <Facebook size={18} />
                     </a>
-                    <a href={whatsappLink} className="btn btn-outline-success btn-sm rounded-circle">
+                    <a href={whatsappLink} className="btn btn-outline-success btn-sm rounded-circle" target="_blank" rel="noopener noreferrer">
                         <MessageCircle size={18} />
                     </a>
-                    <a href={linkedinLink} className="btn btn-outline-info btn-sm rounded-circle">
+                    <a href={linkedinLink} className="btn btn-outline-info btn-sm rounded-circle" target="_blank" rel="noopener noreferrer">
                         <Linkedin size={18} />
                     </a>
                 </div>

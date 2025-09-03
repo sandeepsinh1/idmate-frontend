@@ -10,6 +10,12 @@ const CardTemplate2 = ({
   logoText = "Logo Text Here",
   preview = false,
 }) => {
+  // Helper to add https:// if missing
+  const formatWebsite = (url) => {
+    if (!url) return "";
+    return url.startsWith("http://") || url.startsWith("https://") ? url : `https://${url}`;
+  };
+
   return (
     <div
       className={`${
@@ -17,7 +23,7 @@ const CardTemplate2 = ({
       } container`}
       style={{
         height: preview ? "auto" : "100vh",
-        backgroundColor: preview ? "transparent" : "#111",
+        backgroundColor: preview ? "transparent" : "#6c4545ff",
       }}
     >
       <div
@@ -55,16 +61,34 @@ const CardTemplate2 = ({
             {title}
           </p>
 
-          <ul className="list-unstyled" style={{ fontSize: "0.95rem" }}>
+          <ul className="list-unstyled" style={{ fontSize: "0.95rem", margin: 0, padding: 0 }}>
             <li className="d-flex align-items-center mb-2">
-              <Phone size={18} className="me-2 text-white" /> {phone}
+              <a
+                href={`tel:${phone}`}
+                style={{ color: "#fff", textDecoration: "none", display: "flex", alignItems: "center" }}
+              >
+                <Phone size={18} className="me-2" /> {phone}
+              </a>
             </li>
             <li className="d-flex align-items-center mb-2">
-              <Mail size={18} className="me-2 text-white" /> {email}
+              <a
+                href={`mailto:${email}`}
+                style={{ color: "#fff", textDecoration: "none", display: "flex", alignItems: "center" }}
+              >
+                <Mail size={18} className="me-2" /> {email}
+              </a>
             </li>
             <li className="d-flex align-items-center">
-              <Globe size={18} className="me-2 text-white" /> {website}
-            </li>
+                  <a
+               href={formatWebsite(website)}
+               target="_blank"
+               rel="noopener noreferrer"
+               style={{ display: "flex", alignItems: "center", color: "#fff", textDecoration: "none" }}
+             >
+               <Globe size={16} className="me-2" />
+               {/* Website URL text hidden here */}
+             </a>
+           </li>
           </ul>
         </div>
 

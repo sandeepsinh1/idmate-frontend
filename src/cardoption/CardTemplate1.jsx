@@ -1,11 +1,5 @@
-
 import React from "react";
-import {
-  Phone,
-  Globe,
-  MapPin,
-  Mail,
-} from "lucide-react";
+import { Phone, Globe, MapPin, Mail } from "lucide-react";
 
 const CardTemplate1 = ({
   companyName = "COMPANY",
@@ -19,6 +13,12 @@ const CardTemplate1 = ({
   address = "Add Your Location Here",
   preview = false,
 }) => {
+  // Helper to add https:// if missing
+  const formatWebsite = (url) => {
+    if (!url) return "";
+    return url.startsWith("http://") || url.startsWith("https://") ? url : `https://${url}`;
+  };
+
   return (
     <div
       className={`${
@@ -26,7 +26,7 @@ const CardTemplate1 = ({
       } container`}
       style={{
         height: preview ? "auto" : "100vh",
-        backgroundColor: preview ? "transparent" : "#f5f5f5",
+        backgroundColor: preview ? "transparent" : "#7b7171ff",
       }}
     >
       <div
@@ -46,7 +46,7 @@ const CardTemplate1 = ({
         <div
           style={{
             width: "30%",
-            borderRight: "3px solid #007BFF", // blue vertical line
+            borderRight: "3px solid #007BFF",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -99,16 +99,35 @@ const CardTemplate1 = ({
             style={{ fontSize: "0.85rem", margin: 0, padding: 0 }}
           >
             <li className="d-flex align-items-center mb-2">
-              <Phone size={16} className="me-2 text-primary" /> {phone}
+              <a href={`tel:${phone}`} style={{ display: "flex", alignItems: "center", color: "#007BFF", textDecoration: "none" }}>
+                <Phone size={16} className="me-2" /> {phone}
+              </a>
             </li>
             <li className="d-flex align-items-center mb-2">
-              <Mail size={16} className="me-2 text-primary" /> {email}
+              <a href={`mailto:${email}`} style={{ display: "flex", alignItems: "center", color: "#007BFF", textDecoration: "none" }}>
+                <Mail size={16} className="me-2" /> {email}
+              </a>
             </li>
             <li className="d-flex align-items-center mb-2">
-              <Globe size={16} className="me-2 text-primary" /> {website}
-            </li>
+                <a
+                          href={formatWebsite(website)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ display: "flex", alignItems: "center", color: "#007BFF", textDecoration: "none" }}
+                        >
+                          <Globe size={16} className="me-2" />
+                          {/* Website URL text hidden here */}
+                        </a>
+                       </li>
             <li className="d-flex align-items-center">
-              <MapPin size={16} className="me-2 text-primary" /> {address}
+              <a
+                href={`https://maps.google.com/?q=${encodeURIComponent(address)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ display: "flex", alignItems: "center", color: "#007BFF", textDecoration: "none" }}
+              >
+                <MapPin size={16} className="me-2" /> {address}
+              </a>
             </li>
           </ul>
         </div>

@@ -10,6 +10,7 @@ import RegisterPage from './components/RegisterPage';
 import Dashboard from './components/DashBoard';
 import LandingPage from './components/LandingPage';
 import CardCreationFreePage from './components/CardCreationFreePage';
+import CardWeb from './components/CardWeb';
 import CardCreationPaidPage from './components/CardCreationPaidPage';
 import CardViewPage from './components/CardViewPage';
 import HeaderPage from './components/HeaderPage'
@@ -64,6 +65,8 @@ const location =useLocation();
         
         <Route path="/" element={<LandingPage/>}/>
         <Route path="/CardCreationFreePage" element={<CardCreationFreePage/>}/>
+        <Route path="/CardWeb" element={<CardWeb/>}/>
+      
         <Route path="/CardCreationPaidPage" element={<CardCreationPaidPage/>}/>
         <Route path="/CardViewPage" element={<CardViewPage/>}/>
         <Route path="/FirstPage" element={<FirstPage/>}/>
